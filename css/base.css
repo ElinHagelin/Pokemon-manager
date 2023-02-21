@@ -18,7 +18,7 @@ body {
 }
 
 .main__content,
-.main__search {
+.search__bar {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -41,14 +41,21 @@ body {
 	color: white;
 	padding: 0.8em 0;
 	font-size: 1em;
+	cursor: pointer;
 }
 
-.selected {
+.button:hover {
+	background-color: #2b57f6;
+}
+
+.selected,
+.selected:hover {
 	background-color: #181D4F;
 }
 
 .footer {
 	text-align: center;
+	padding-top: 2em;
 }
 
 @media screen and (min-width: 800px) {

@@ -10,87 +10,90 @@
 	<link rel="stylesheet" href="./css/base.css">
 	<link rel="stylesheet" href="./css/style.css">
 	<script src="./script/script.js" type="module"></script>
+	<script src="./script/fetching.js" type="module"></script>
 </head>
 
 <body>
-	<main class="main">
+	<main class="main main__search">
 		<h1 class="main__heading">Pokemon Manager</h1>
 		<div class="main__buttons">
 			<button class="button button--search selected">Find Champion</button>
 			<button class="button button--team">My team</button>
 		</div>
-		<section class="main__search">
-			<label class="search-label" for="search-input">Search for pokémon</label>
-			<input type="text" id="search-input">
-		</section>
-		<section class="main__content">
-			<div class="card">
-				<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
-				<section class="card__info">
-					<div class="info__heading__container">
-						<h2 class="info__heading">Pikachu</h2>
-						<button class="info__button info__button--icon"><img src="./img/down (1).png" alt=""></button>
-					</div>
-					<p class="info__text">information about pikachu</p>
-					<button class="info__button info__button--add">Add to team</button>
-				</section>
-			</div>
-			<div class="card">
-				<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
-				<section class="card__info">
-					<div class="info__heading__container">
-						<h2 class="info__heading">Pikachu</h2>
-						<button class="info__button info__button--icon"><img src="./img/down (1).png" alt=""></button>
-					</div>
-					<p class="info__text">information about pikachu</p>
-					<button class="info__button info__button--add">Add to team</button>
-				</section>
-			</div>
-			<div class="card">
-				<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
-				<section class="card__info">
-					<div class="info__heading__container">
-						<h2 class="info__heading">Pikachu</h2>
-						<button class="info__button info__button--icon"><img src="./img/down (1).png" alt=""></button>
-					</div>
-					<p class="info__text">information about pikachu</p>
-					<button class="info__button info__button--add">Add to team</button>
-				</section>
-			</div>
-			<div class="card">
-				<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
-				<section class="card__info">
-					<div class="info__heading__container">
-						<h2 class="info__heading">Pikachu</h2>
-						<button class="info__button info__button--icon"><img src="./img/down (1).png" alt=""></button>
-					</div>
-					<p class="info__text">information about pikachu</p>
-					<button class="info__button info__button--add">Add to team</button>
-				</section>
-			</div>
-			<div class="card">
-				<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
-				<section class="card__info">
-					<div class="info__heading__container">
-						<h2 class="info__heading">Pikachu</h2>
-						<button class="info__button info__button--icon"><img src="./img/down (1).png" alt=""></button>
-					</div>
-					<p class="info__text">information about pikachu</p>
-					<button class="info__button info__button--add">Add to team</button>
-				</section>
-			</div>
-			<div class="card">
-				<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
-				<section class="card__info">
-					<div class="info__heading__container">
-						<h2 class="info__heading">Pikachu</h2>
-						<button class="info__button info__button--icon"><img src="./img/down (1).png" alt=""></button>
-					</div>
-					<p class="info__text">information about pikachu</p>
-					<button class="info__button info__button--add">Add to team</button>
-				</section>
-			</div>
-		</section>
+		<div class="search__view">
+			<section class="search__bar">
+				<label class="search__label" for="search-input">Search for pokémon</label>
+				<input type="text" id="search-input">
+			</section>
+			<section class="main__content">
+				<div class="card">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h2 class="info__heading">Pikachu</h2>
+							<button class="info__icon"><img src="./img/down (1).png" alt=""></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<button class="info__button info__button--add">Add to team</button>
+					</section>
+				</div>
+				<div class="card">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h2 class="info__heading">Pikachu</h2>
+							<button class="info__icon"><img src="./img/down (1).png" alt=""></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<button class="info__button info__button--add">Add to team</button>
+					</section>
+				</div>
+				<div class="card">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h2 class="info__heading">Pikachu</h2>
+							<button class="info__icon"><img src="./img/down (1).png" alt=""></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<button class="info__button info__button--add">Add to team</button>
+					</section>
+				</div>
+				<div class="card">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h2 class="info__heading">Pikachu</h2>
+							<button class="info__icon"><img src="./img/down (1).png" alt=""></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<button class="info__button info__button--add">Add to team</button>
+					</section>
+				</div>
+				<div class="card">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h2 class="info__heading">Pikachu</h2>
+							<button class="info__icon"><img src="./img/down (1).png" alt=""></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<button class="info__button info__button--add">Add to team</button>
+					</section>
+				</div>
+				<div class="card">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h2 class="info__heading">Pikachu</h2>
+							<button class="info__icon"><img src="./img/down (1).png" alt=""></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<button class="info__button info__button--add">Add to team</button>
+					</section>
+				</div>
+			</section>
+		</div>
 	</main>
 	<footer class="footer">
 		<p>Powered by <a href="https://pokeapi.co/">PokeAPI</a></p>

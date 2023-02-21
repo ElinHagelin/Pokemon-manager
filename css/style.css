@@ -1,4 +1,8 @@
-.search-label {
+.invisible {
+	visibility: hidden;
+}
+
+.search__label {
 	font-size: 1.1em;
 	margin-top: 1em;
 }
@@ -27,12 +31,14 @@
 }
 
 .info__button {
-	padding: 0.5em 1em;
+	color: white;
+	background-color: #3E65F2;
+	padding: 0.7em 1.2em;
 	max-width: fit-content;
 	border-radius: 1em;
-	background-color: #3E65F2;
 	border: none;
 	align-self: center;
+	cursor: pointer;
 }
 
 .info__heading__container {
@@ -41,15 +47,11 @@
 	width: 100%;
 }
 
-.info__heading {
-	display: inline-block;
-}
-
-.info__button--icon {
+.info__icon {
 	background-color: unset;
-	display: inline-block;
 	cursor: pointer;
 	padding: 0;
+	border: none;
 }
 
 @media screen and (min-width: 400px) {
