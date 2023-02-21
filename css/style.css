@@ -13,7 +13,7 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	background-color: rgb(154, 154, 154);
+	background-color: rgb(192, 191, 191);
 	padding: 0.5em;
 	border-radius: 1em;
 	margin: 1em 0;
@@ -35,6 +35,12 @@
 	align-self: center;
 }
 
+.info__heading__container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
 .info__heading {
 	display: inline-block;
 }
@@ -42,4 +48,13 @@
 .info__button--icon {
 	background-color: unset;
 	display: inline-block;
+	cursor: pointer;
+	padding: 0;
+}
+
+@media screen and (min-width: 400px) {
+	.card {
+		max-width: 365px;
+		margin: 1em 0;
+	}
 }

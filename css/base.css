@@ -3,12 +3,22 @@
 	margin: 0;
 }
 
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(154, 154, 154);
+}
+
 .main {
 	background: linear-gradient(to bottom, red 5%, rgb(255, 72, 72) 15%, rgb(255, 141, 141) 30%, white 100%);
 	text-align: center;
+	width: 100%;
 }
 
-.main__content {
+.main__content,
+.main__search {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -39,4 +49,20 @@
 
 .footer {
 	text-align: center;
+}
+
+@media screen and (min-width: 800px) {
+	.main {
+		max-width: 800px;
+		border-radius: 1em;
+		margin-top: 2em;
+	}
+
+	.main__content {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 1em;
+		padding: 1em;
+		justify-content: center;
+	}
 }
