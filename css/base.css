@@ -1,0 +1,42 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.main {
+	background: linear-gradient(to bottom, red 5%, rgb(255, 72, 72) 15%, rgb(255, 141, 141) 30%, white 100%);
+	text-align: center;
+}
+
+.main__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.main__heading {
+	padding: 0.5em 0;
+}
+
+.main__buttons {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.button {
+	width: 50%;
+	background-color: #3E65F2;
+	border: none;
+	color: white;
+	padding: 0.8em 0;
+	font-size: 1em;
+}
+
+.selected {
+	background-color: #181D4F;
+}
+
+.footer {
+	text-align: center;
+}
