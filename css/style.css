@@ -41,13 +41,17 @@
 	cursor: pointer;
 }
 
+.info__button--add:hover {
+	background-color: #2b57f6;
+}
+
 .info__heading__container {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
 }
 
-.info__icon {
+.info__expand {
 	background-color: unset;
 	cursor: pointer;
 	padding: 0;

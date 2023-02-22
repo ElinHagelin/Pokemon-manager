@@ -1,27 +1,16 @@
-const searchInput = document.querySelector('#search-input')
-const searchButton = document.querySelector('.button--search')
 
-const baseUrl = 'https://pokeapi.co/api/v2/pokemon/'
-const showAll = '?limit=100000&offset=0'
+async function searchPokemon(url, search) {
+	const response = await fetch(url + search)
+	let data = await response.json()
+	return data
+}
 
-searchInput.addEventListener('keydown', async (event) => {
-	const search = searchInput.value
-	if (event.key == 'Enter' && search != '') {
-		const response = await fetch(baseUrl + search)
-		console.log('response is ' + response);
-		let data = await response.text()
-		console.log('data is ' + data);
-		return data
-	}
-	else if (event.key == 'Enter' && search == '') {
-		const response = await fetch(baseUrl + showAll)
-		console.log('response is ' + response);
-		let data = await response.text()
-		console.log('data is ' + data);
-		return data
-	}
-})
+async function getImage(url) {
+	const response = await fetch(url)
+	let data = await response.json()
+	return data.sprites.front_default
+}
 
 
 
-export { }
+export { searchPokemon, getImage }
