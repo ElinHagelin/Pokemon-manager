@@ -16,7 +16,7 @@ async function createCards(list) {
 		const pokemonImg = createElement('img', 'card__image')
 		const cardInfo = createElement('section', 'card__info')
 		const headingContainer = createElement('div', 'info__heading__container')
-		const heading = createElement('h2', 'info__heading')
+		const heading = createElement('h3', 'info__heading')
 		const expandBtn = createElement('button', 'info__expand')
 		const expandIcon = createElement('img', 'expand__icon')
 		const pokemonInfo = createElement('p', 'info__text')

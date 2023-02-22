@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'PokemonFont';
+	src: url('../fonts/Pokemon\ Solid.ttf') format('truetype');
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -25,7 +30,21 @@ body {
 }
 
 .main__heading {
-	padding: 0.5em 0;
+	font-family: 'PokemonFont', Fallback, sans-serif;
+	font-size: 20px;
+	letter-spacing: 5px;
+	-webkit-text-stroke: 2px #3466AF;
+	/* width and color */
+
+	/* font-family: sans; */
+	color: #FFCB05;
+	margin-top: -1em;
+
+}
+
+.main__logo {
+	max-width: 100%;
+	object-fit: cover;
 }
 
 .main__buttons {
