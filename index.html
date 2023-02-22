@@ -10,18 +10,19 @@
 	<link rel="stylesheet" href="./css/base.css">
 	<link rel="stylesheet" href="./css/style.css">
 	<script src="./script/script.js" type="module"></script>
-	<!-- <script src="./script/fetching.js" type="module"></script> -->
 </head>
 
 <body>
-	<main class="main main__search">
+	<header class="header">
 		<img src="./img/pngegg.png" alt="Pokémon logo" class="main__logo">
 		<h2 class="main__heading">Team Manager</h2>
 		<div class="main__buttons">
 			<button class="button button--search selected">Find Champion</button>
 			<button class="button button--team">My team</button>
 		</div>
-		<div class="search__view">
+	</header>
+	<main class="main">
+		<div class="main__search">
 			<section class="search__bar">
 				<label class="search__label" for="search-input">Search for pokémon</label>
 				<input type="text" id="search-input">
@@ -31,7 +32,7 @@
 					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
 					<section class="card__info">
 						<div class="info__heading__container">
-							<h3 class="info__heading">Pikachu</h3>
+							<h5 class="info__heading">Pikachu</h5>
 							<button class="info__expand"><img src="./img/down (1).png" alt=""
 									class="expand__icon"></button>
 						</div>
@@ -42,7 +43,93 @@
 
 			</section>
 		</div>
+		<div class="main__team invisible">
+			<h3 class="team-heading">Elins Team</h3>
+			<div class="content__team">
+				<div class="card chosen">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h5 class="info__heading">Pikachu</h5>
+							<button class="info__expand"><img src="./img/down (1).png" alt=""
+									class="expand__icon"></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<div class="info__button__container">
+							<button class="info__button info__button--demote">Demote</button>
+							<button class="info__button info__button--kick">Kick</button>
+						</div>
+					</section>
+				</div>
+				<div class="card chosen">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h5 class="info__heading">Pikachu</h5>
+							<button class="info__expand"><img src="./img/down (1).png" alt=""
+									class="expand__icon"></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<div class="info__button__container">
+							<button class="info__button info__button--demote">Demote</button>
+							<button class="info__button info__button--kick">Kick</button>
+						</div>
+					</section>
+				</div>
+				<div class="card chosen">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h5 class="info__heading">Pikachu</h5>
+							<button class="info__expand"><img src="./img/down (1).png" alt=""
+									class="expand__icon"></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<div class="info__button__container">
+							<button class="info__button info__button--demote">Demote</button>
+							<button class="info__button info__button--kick">Kick</button>
+						</div>
+					</section>
+				</div>
+			</div>
+
+
+			<h4>Backup team members</h4>
+			<div class="content__backup">
+				<div class="card">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h5 class="info__heading">Pikachu</h5>
+							<button class="info__expand"><img src="./img/down (1).png" alt=""
+									class="expand__icon"></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<div class="info__button__container">
+							<button class="info__button info__button--promote">Promote</button>
+							<button class="info__button info__button--kick">Kick</button>
+						</div>
+					</section>
+				</div>
+				<div class="card">
+					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+					<section class="card__info">
+						<div class="info__heading__container">
+							<h5 class="info__heading">Pikachu</h5>
+							<button class="info__expand"><img src="./img/down (1).png" alt=""
+									class="expand__icon"></button>
+						</div>
+						<p class="info__text">information about pikachu</p>
+						<div class="info__button__container">
+							<button class="info__button info__button--promote">Promote</button>
+							<button class="info__button info__button--kick">Kick</button>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
 	</main>
+
 	<footer class="footer">
 		<p>Powered by <a href="https://pokeapi.co/" target="blank">PokeAPI</a></p>
 	</footer>

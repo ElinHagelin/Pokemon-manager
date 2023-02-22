@@ -1,5 +1,6 @@
 .invisible {
-	visibility: hidden;
+	/* visibility: hidden; */
+	display: none;
 }
 
 .search__label {
@@ -11,6 +12,19 @@
 	max-width: 15em;
 	padding: 0.4em;
 	font-size: 1em;
+}
+
+.team-heading {
+	margin-top: 1em;
+}
+
+.main__content,
+.content__team,
+.content__backup {
+	display: flex;
+	align-items: center;
+	padding: 1em;
+	flex-direction: column;
 }
 
 .card {
@@ -30,25 +44,56 @@
 	align-items: flex-start;
 }
 
+.info__button__container {
+	display: flex;
+	gap: 0.5em;
+}
+
+.info__button,
+.info__button--promote {
+	background-color: #3466AF;
+}
+
 .info__button {
 	color: white;
-	background-color: #3E65F2;
 	padding: 0.7em 1.2em;
-	max-width: fit-content;
 	border-radius: 1em;
+	max-width: fit-content;
 	border: none;
 	align-self: center;
 	cursor: pointer;
+	text-align: center;
 }
 
-.info__button--add:hover {
-	background-color: #2b57f6;
+.info__button--promote,
+.info__button--demote,
+.info__button--kick {
+	width: 6em;
+}
+
+.info__button--demote,
+.info__button--kick {
+	background-color: rgb(213, 68, 68);
+}
+
+.info__button--demote:hover,
+.info__button--kick:hover {
+	background-color: rgb(212, 55, 55);
+}
+
+.info__button--add:hover,
+.info__button--promote:hover {
+	background-color: #295faf;
 }
 
 .info__heading__container {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+}
+
+.info__heading {
+	font-size: 1.2em;
 }
 
 .info__expand {
@@ -58,9 +103,46 @@
 	border: none;
 }
 
+main::-webkit-scrollbar {
+	width: 12px;
+}
+
+main::-webkit-scrollbar-track {
+	background: linear-gradient(to bottom, rgb(255, 154, 154) 5%, white 100%);
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-bottom: 25px;
+}
+
+main::-webkit-scrollbar-thumb {
+	background-color: #3466AF;
+	border-radius: 20px;
+	border: 3px solid rgb(255, 154, 154);
+}
+
 @media screen and (min-width: 400px) {
 	.card {
-		max-width: 365px;
+		max-width: 350px;
 		margin: 1em 0;
 	}
+}
+
+@media screen and (min-width: 800px) {
+	.chosen {
+		min-width: 500px;
+	}
+
+	.chosen .info__button {
+		padding: 0.7em 1.2em;
+	}
+
+	.main__content,
+	.content__backup {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 1em;
+		padding: 1em;
+		justify-content: center;
+	}
+
 }

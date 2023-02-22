@@ -16,7 +16,7 @@ async function createCards(list) {
 		const pokemonImg = createElement('img', 'card__image')
 		const cardInfo = createElement('section', 'card__info')
 		const headingContainer = createElement('div', 'info__heading__container')
-		const heading = createElement('h3', 'info__heading')
+		const heading = createElement('h5', 'info__heading')
 		const expandBtn = createElement('button', 'info__expand')
 		const expandIcon = createElement('img', 'expand__icon')
 		const pokemonInfo = createElement('p', 'info__text')
@@ -38,6 +38,7 @@ async function createCards(list) {
 		pokemonImg.src = await getImage(pokemon.url)
 		expandIcon.src = '../img/down (1).png'
 		heading.innerText = capitalName
+		heading.classList.add('info__heading')
 		pokemonInfo.classList.add('invisible')
 		pokemonInfo.innerText = 'information om pokemon'
 		addBtn.classList.add('info__button--add')
