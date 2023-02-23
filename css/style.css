@@ -172,7 +172,6 @@ main::-webkit-scrollbar-thumb {
 		grid-row: 1;
 		justify-self: end;
 	}
-
 }
 
 @media screen and (min-width: 800px) {
@@ -193,5 +192,4 @@ main::-webkit-scrollbar-thumb {
 		padding: 1em;
 		justify-content: center;
 	}
-
 }

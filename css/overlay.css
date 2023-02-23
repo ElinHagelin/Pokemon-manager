@@ -1,0 +1,16 @@
+.overlay__background {
+	background-color: rgba(rgb(0, 0, 0), 0.3);
+}
+
+.overlay__dialogue {
+	background-color: grey;
+}
+
+.overlay__heading {
+	font-size: 1.4em;
+}
+
+.overlay__input {
+	padding: 0.2em 0.4em;
+	font-size: 1.2em;
+}

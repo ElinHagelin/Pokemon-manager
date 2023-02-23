@@ -1,19 +1,46 @@
 
 
-const LS_KEY = 'Pokemon-manager-team'
+const LS_KEY = 'Pokemon-manager'
+const team = {
+	name: '',
+	primaryChampions: [],
+	backupChampions: []
+}
 
-function addToTeam(pokemon) {
-	let teamFromLocalStorage = localStorage.getItem(LS_KEY)
+function storeTeam(teamName) {
+	let teamFromLS = localStorage.getItem(LS_KEY)
 
-	if (!teamFromLocalStorage) {
-		teamFromLocalStorage = '[]'
+	if (teamFromLS && teamFromLS.name) {
+		teamFromLS = JSON.parse(teamFromLS)
+	} else {
+		teamFromLS = team
+		console.log('skapar nytt lag' + teamFromLS);
 	}
-	let team = JSON.parse(teamFromLocalStorage)
 
-	team.push(pokemon)
+	teamFromLS.name = teamName
 
-	let teamToSave = JSON.stringify(team)
+	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
-export { addToTeam }
+function addToTeam(pokemon) {
+	let teamFromLS = localStorage.getItem(LS_KEY)
+
+	if (!teamFromLS && !teamFromLS.champions) {
+		teamFromLS = team
+	} else {
+		teamFromLS = JSON.parse(teamFromLS)
+	}
+
+	if (primaryChampions.length < 3) {
+		teamFromLS.primaryChampions.push(pokemon)
+	}
+	else if (primaryChampions.length >= 3) {
+		teamFromLS.backupChampions.push(pokemon)
+	}
+
+	let teamToSave = JSON.stringify(teamFromLS)
+	localStorage.setItem(LS_KEY, teamToSave)
+}
+
+export { addToTeam, storeTeam }

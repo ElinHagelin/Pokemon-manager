@@ -1,0 +1,22 @@
+
+- add-knappen lägger till pokemon i laget (om det finns plats i main team läggs den där, annars i backup)
+
+- drag and drop i main-laget (håller man den i backup-containern läggs den överst i backup)
+
+- Spara laget i localStorage
+
+- Sätt att byta namn på pokemon i laget
+
+- kick- knappen tar bort pokemon ur laget
+
+- demote flyttar popkemon till Backup
+
+- promote flyttar upp pokemon till laget.
+
+- promote disabled när laget är fullt
+
+- team-namnet har select-val så att man kan ha flera lag inlagda.
+
+- team-namnet har en edit-ikon för att byta namn på teamet.
+
+-overlay med input för att namnge laget

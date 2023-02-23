@@ -1,13 +1,16 @@
 import { searchPokemon, getPokemonList } from "./fetching.js";
 import { createCards, search, clearContent } from "./utils.js";
+import { createOverlay } from "./overlay.js"
 // import { addToTeam } from "./store.js";
 
+const body = document.querySelector('body')
 const searchInput = document.querySelector('#search-input')
 const searchButton = document.querySelector('.button--search')
 const teamButton = document.querySelector('.button--team')
 const mainContent = document.querySelector('.main__content')
 const searchView = document.querySelector('.main__search')
 const teamView = document.querySelector('.main__team')
+const editIcon = document.querySelector('.heading__icon')
 
 
 const baseUrl = 'https://pokeapi.co/api/v2/pokemon'
@@ -56,4 +59,10 @@ searchButton.addEventListener('click', () => {
 	teamButton.classList.remove('selected')
 	searchButton.classList.add('selected')
 })
+
+
+editIcon.addEventListener('click', () => {
+	createOverlay(body)
+})
+
 

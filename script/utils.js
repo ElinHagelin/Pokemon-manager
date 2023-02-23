@@ -3,12 +3,6 @@ import { addToTeam } from "./store.js";
 
 const mainContent = document.querySelector('.main__content')
 
-function createSearchBar() {
-	const searchLabel = document.createElement('label')
-	const searchInput = document.createElement('input')
-	searchInput.setAttribute('id', 'search-input')
-	searchLabel.htmlFor = 'search-input'
-}
 
 async function createCards(list) {
 	list.forEach(async (pokemon) => {
