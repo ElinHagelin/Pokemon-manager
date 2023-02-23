@@ -1,3 +1,13 @@
+let pokemonList = []
+
+async function getPokemonList() {
+	const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0')
+	let data = await response.json()
+	return data
+	// pokemonList = data.results
+	// return pokemonList
+
+}
 
 async function searchPokemon(url, search) {
 	const response = await fetch(url + search)
@@ -13,4 +23,4 @@ async function getImage(url) {
 
 
 
-export { searchPokemon, getImage }
+export { searchPokemon, getImage, getPokemonList }

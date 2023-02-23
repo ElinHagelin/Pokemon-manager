@@ -44,9 +44,9 @@ async function createCards(list) {
 		addBtn.classList.add('info__button--add')
 		addBtn.innerText = 'Add to team'
 
-		addBtn.addEventlistener('click', () => {
-			addToTeam(pokemon);
-		})
+		// addBtn.addEventlistener('click', () => {
+		// 	addToTeam(pokemon);
+		// })
 	})
 }
 
@@ -56,5 +56,16 @@ function createElement(element, className) {
 	return x
 }
 
+function search(input, list) {
+	const searchList = list.filter(pokemon => {
+		return (pokemon.name.toLowerCase().includes(input))
+	})
+	return searchList
+}
 
-export { createCards }
+function clearContent() {
+	mainContent.innerHTML = ''
+}
+
+
+export { createCards, search, clearContent }

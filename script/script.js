@@ -1,5 +1,5 @@
-import { searchPokemon } from "./fetching.js";
-import { createCards } from "./utils.js";
+import { searchPokemon, getPokemonList } from "./fetching.js";
+import { createCards, search, clearContent } from "./utils.js";
 // import { addToTeam } from "./store.js";
 
 const searchInput = document.querySelector('#search-input')
@@ -15,17 +15,31 @@ const showAll = '?limit=100000&offset=0'
 const show20 = '?limit=20&offset=0'
 
 
+async function fullPokemonList() {
+	const data = await getPokemonList()
+	return data
+}
+
+
 searchInput.addEventListener('keydown', async (event) => {
-	const search = searchInput.value
-	if (event.key == 'Enter' && search != '') {
-		const data = await searchPokemon(baseUrl, `/${search}`)
-		const renderList = createCards(data.results)
-		console.log(data);
+	const data = await fullPokemonList()
+	const searchString = searchInput.value.toLowerCase()
+	if (event.key == 'Enter' && searchString != '') {
+		clearContent()
+
+		const searchList = search(searchString, data.results)
+
+		createCards(searchList)
+		console.log('söklista är: ' + searchList);
+		searchInput.value = ''
 	}
-	else if (event.key == 'Enter' && search == '') {
-		const data = await searchPokemon(baseUrl, show20)
-		const renderList = createCards(data.results)
-		console.log(data);
+	else if (event.key == 'Enter' && searchString == '') {
+		clearContent()
+		createCards(data.results)
+		data.results.forEach(pokemon => {
+			console.log(pokemon)
+		});
+		searchInput.value = ''
 	}
 })
 
