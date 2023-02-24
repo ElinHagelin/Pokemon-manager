@@ -1,8 +1,10 @@
-import { searchPokemon, getPokemonList } from "./fetching.js";
-import { createCards, search, clearContent } from "./utils.js";
+import { getPokemonList } from "./fetching.js";
+import { createCards, search, clearContent, kick } from "./utils.js";
 import { createOverlay } from "./overlay.js"
 // import { addToTeam } from "./store.js";
 
+
+const html = document.querySelector('html')
 const body = document.querySelector('body')
 const searchInput = document.querySelector('#search-input')
 const searchButton = document.querySelector('.button--search')
@@ -62,7 +64,7 @@ searchButton.addEventListener('click', () => {
 
 
 editIcon.addEventListener('click', () => {
-	createOverlay(body)
+	createOverlay(html)
 })
 
 

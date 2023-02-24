@@ -1,16 +1,49 @@
 .overlay__background {
-	background-color: rgba(rgb(0, 0, 0), 0.3);
+	background-color: rgba(0, 0, 0, 0.3);
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
 }
 
 .overlay__dialogue {
-	background-color: grey;
+	background-color: #96befb;
+	border: 4px solid #7baffd;
+	padding: 3em;
+	border-radius: 1em;
+	text-align: center;
+	max-width: 90%;
+	margin-top: 15em;
 }
 
 .overlay__heading {
-	font-size: 1.4em;
+	font-size: 1.2em;
+	display: block;
+	margin-bottom: 1em;
 }
 
 .overlay__input {
-	padding: 0.2em 0.4em;
+	padding: 0.4em 0.4em;
 	font-size: 1.2em;
+	border-radius: 0.5em;
+	border: 1px solid #5a9afa;
+	max-width: 90%;
+}
+
+@media screen and (min-width: 600px) {
+	.overlay__background {
+		align-items: center;
+	}
+
+	.overlay__heading {
+		font-size: 1.4em;
+	}
+
+	.overlay__dialogue {
+		margin-top: unset;
+	}
 }

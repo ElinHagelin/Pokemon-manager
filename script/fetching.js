@@ -14,4 +14,4 @@ async function getImage(url) {
 
 
 
-export { searchPokemon, getImage, getPokemonList }
+export { getImage, getPokemonList }

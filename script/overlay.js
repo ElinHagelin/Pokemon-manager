@@ -1,8 +1,8 @@
 import { storeTeam } from "./store.js";
 
-const teamName = document.querySelector('.team__heading')
+const teamName = document.querySelector('.team__heading__text')
 
-function createOverlay(body) {
+function createOverlay(html) {
 	const overlay = {
 		background: document.createElement('div'),
 		dialogue: document.createElement('div'),
@@ -16,15 +16,17 @@ function createOverlay(body) {
 	overlay.input.classList.add('overlay__input')
 
 	overlay.heading.innerText = 'Name your team'
+	overlay.input.setAttribute('maxlength', 10)
 
 	overlay.dialogue.append(overlay.heading)
 	overlay.dialogue.append(overlay.input)
 	overlay.background.append(overlay.dialogue)
-	body.append(overlay.background)
+	html.append(overlay.background)
 
 
 	overlay.input.addEventListener('keydown', event => {
 		if (event.key == 'Enter' && overlay.input.value != '') {
+			console.log('you clicked enter');
 			storeTeam(overlay.input.value)
 			teamName.innerText = `Team ${overlay.input.value}`
 			overlay.background.remove()

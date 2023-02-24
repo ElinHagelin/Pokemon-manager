@@ -1,5 +1,5 @@
 import { getImage } from "./fetching.js";
-import { addToTeam } from "./store.js";
+import { addToTeam, kickFromLS } from "./store.js";
 
 const mainContent = document.querySelector('.main__content')
 
@@ -44,6 +44,14 @@ async function createCards(list) {
 	})
 }
 
+function addBtn(container, className, text) {
+	const btn = createElement('button', ('info__button'))
+	addBtn.classList.add(className)
+	addBtn.innerText = text
+	container.append(btn)
+
+}
+
 function createElement(element, className) {
 	const x = document.createElement(element)
 	x.classList.add(className)
@@ -61,5 +69,9 @@ function clearContent() {
 	mainContent.innerHTML = ''
 }
 
+function kick(element, pokemon) {
+	element.remove(pokemon)
+}
 
-export { createCards, search, clearContent }
+
+export { createCards, search, clearContent, kick }

@@ -8,16 +8,18 @@ const team = {
 }
 
 function storeTeam(teamName) {
+	console.log('kör storeTeam 1');
 	let teamFromLS = localStorage.getItem(LS_KEY)
-
-	if (teamFromLS && teamFromLS.name) {
+	console.log('efter hämtning ' + teamFromLS);
+	if (teamFromLS //&& teamFromLS.name
+	) {
 		teamFromLS = JSON.parse(teamFromLS)
 	} else {
 		teamFromLS = team
 		console.log('skapar nytt lag' + teamFromLS);
 	}
-
 	teamFromLS.name = teamName
+	// console.log('kör storeTeam 2' + teamFromLS.name);
 
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
@@ -43,4 +45,20 @@ function addToTeam(pokemon) {
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
-export { addToTeam, storeTeam }
+function kickFromLS(pokemonName) {
+	let teamFromLS = localStorage.getItem(LS_KEY)
+	teamFromLS = JSON.parse(teamFromLS)
+
+	teamFromLS.champions.find(pokemon => {
+		if (pokemon.name == pokemonName) {
+			const index = teamFromLS.champions.indexOf(pokemon)
+			const remove = teamFromLS.champions.splice(index, 1)
+		}
+	})
+	let teamToSave = JSON.stringify(teamFromLS)
+	localStorage.setItem(LS_KEY, teamToSave)
+}
+
+
+
+export { addToTeam, storeTeam, kickFromLS }
