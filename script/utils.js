@@ -1,7 +1,8 @@
 import { getImage } from "./fetching.js";
-import { addToTeam, kickFromLS } from "./store.js";
+import { addToTeamLS, kickFromTeamLS } from "./store.js";
 
 const mainContent = document.querySelector('.main__content')
+const addBtn = document.querySelector('.info__button--add')
 
 
 async function createCards(list) {
@@ -38,13 +39,21 @@ async function createCards(list) {
 		addBtn.classList.add('info__button--add')
 		addBtn.innerText = 'Add to team'
 
-		// addBtn.addEventlistener('click', () => {
-		// 	addToTeam(pokemon);
-		// })
+	})
+
+}
+
+function addToTeam(list, button) {
+	list.forEach(pokemon => {
+
+		button.addEventlistener('click', () => {
+			console.log('Du klickade på: ' + pokemon.name);
+			addToTeamLS(pokemon);
+		})
 	})
 }
 
-function addBtn(container, className, text) {
+function createBtn(container, className, text) {
 	const btn = createElement('button', ('info__button'))
 	addBtn.classList.add(className)
 	addBtn.innerText = text
@@ -74,4 +83,6 @@ function kick(element, pokemon) {
 }
 
 
-export { createCards, search, clearContent, kick }
+
+
+export { createCards, search, clearContent, kick, addToTeam }

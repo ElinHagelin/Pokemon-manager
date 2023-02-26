@@ -1,7 +1,7 @@
 import { getPokemonList } from "./fetching.js";
-import { createCards, search, clearContent, kick } from "./utils.js";
+import { createCards, search, clearContent, kick, addToTeam } from "./utils.js";
 import { createOverlay } from "./overlay.js"
-// import { addToTeam } from "./store.js";
+import { addToTeamLS, ShowTeamName } from "./store.js";
 
 
 const html = document.querySelector('html')
@@ -13,6 +13,9 @@ const mainContent = document.querySelector('.main__content')
 const searchView = document.querySelector('.main__search')
 const teamView = document.querySelector('.main__team')
 const editIcon = document.querySelector('.heading__icon')
+const teamName = document.querySelector('.team__heading__text')
+const addToTeamBtn = document.querySelector('.info__button--add')
+const team1 = document.querySelector('#team-1')
 
 
 const baseUrl = 'https://pokeapi.co/api/v2/pokemon'
@@ -25,6 +28,7 @@ async function fullPokemonList() {
 	return data
 }
 
+ShowTeamName(teamName, team1)
 
 searchInput.addEventListener('keydown', async (event) => {
 	const data = await fullPokemonList()
@@ -35,12 +39,14 @@ searchInput.addEventListener('keydown', async (event) => {
 		const searchList = search(searchString, data.results)
 
 		createCards(searchList)
-		console.log('söklista är: ' + searchList);
+		addToTeam(searchList, addToTeamBtn)
+		console.log('söklista är: ' + searchList.results);
 		searchInput.value = ''
 	}
 	else if (event.key == 'Enter' && searchString == '') {
 		clearContent()
 		createCards(data.results)
+		addToTeam(data.results, addToTeamBtn)
 		data.results.forEach(pokemon => {
 			console.log(pokemon)
 		});
@@ -63,8 +69,16 @@ searchButton.addEventListener('click', () => {
 })
 
 
+
+
 editIcon.addEventListener('click', () => {
 	createOverlay(html)
 })
+
+
+// addToTeamBtn.addEventListener('click', () => {
+// 	console.log();
+// 	addToTeam(pokemon)
+// })
 
 

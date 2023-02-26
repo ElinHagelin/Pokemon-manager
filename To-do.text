@@ -17,6 +17,4 @@
 
 - team-namnet har select-val så att man kan ha flera lag inlagda.
 
-- team-namnet har en edit-ikon för att byta namn på teamet.
-
--overlay med input för att namnge laget
+- dropdown-ul-lista istället för select-element.

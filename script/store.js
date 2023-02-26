@@ -7,6 +7,16 @@ const team = {
 	backupChampions: []
 }
 
+function ShowTeamName(teamNameHeading, selectOption) {
+	let teamFromLS = localStorage.getItem(LS_KEY)
+	teamFromLS = JSON.parse(teamFromLS)
+
+	if (teamFromLS.name) {
+		teamNameHeading.innerText = `Team ${teamFromLS.name}`
+		selectOption.innerText = `Team ${teamFromLS.name}`
+	}
+}
+
 function storeTeam(teamName) {
 	console.log('kör storeTeam 1');
 	let teamFromLS = localStorage.getItem(LS_KEY)
@@ -19,13 +29,13 @@ function storeTeam(teamName) {
 		console.log('skapar nytt lag' + teamFromLS);
 	}
 	teamFromLS.name = teamName
-	// console.log('kör storeTeam 2' + teamFromLS.name);
+	console.log('kör storeTeam 2' + teamFromLS.name);
 
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
-function addToTeam(pokemon) {
+function addToTeamLS(pokemon) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
 
 	if (!teamFromLS && !teamFromLS.champions) {
@@ -45,7 +55,7 @@ function addToTeam(pokemon) {
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
-function kickFromLS(pokemonName) {
+function kickFromTeamLS(pokemonName) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
 	teamFromLS = JSON.parse(teamFromLS)
 
@@ -61,4 +71,4 @@ function kickFromLS(pokemonName) {
 
 
 
-export { addToTeam, storeTeam, kickFromLS }
+export { addToTeamLS, storeTeam, kickFromTeamLS, ShowTeamName }
