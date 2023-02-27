@@ -1,16 +1,12 @@
 import { getImage } from "./fetching.js";
-import { addToTeamLS, kickFromTeamLS, demoteInTeamLS } from "./store.js";
+import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS, LS_KEY } from "./store.js";
 
 const mainContent = document.querySelector('.main__content')
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
 
 
-
-
-
 async function createCard(container, pokemon) {
-
 	const card = createElement('div', 'card')
 	const pokemonImg = createElement('img', 'card__image')
 	const cardInfo = createElement('section', 'card__info')
@@ -20,7 +16,6 @@ async function createCard(container, pokemon) {
 	const expandIcon = createElement('img', 'expand__icon')
 	const pokemonInfo = createElement('p', 'info__text')
 	const buttonContainer = createElement('div', 'info__button__container')
-
 
 	container.append(card)
 	card.append(pokemonImg)
@@ -57,13 +52,13 @@ async function createCard(container, pokemon) {
 
 		demoteBtn.addEventListener('click', () => {
 			console.log('demote ' + pokemon.name);
-			demoteInTeamLS(pokemon)
+			demoteInTeamLS(pokemon.name)
+			demote(card, backupTeam, pokemon)
 		})
 
 		kickBtn.addEventListener('click', () => {
 			kickFromTeamLS(pokemon.name, primaryTeam)
-			kick(primaryTeam, pokemon)
-
+			kick(card, pokemon)
 		})
 
 	} else if (container == backupTeam) {
@@ -71,15 +66,19 @@ async function createCard(container, pokemon) {
 		const promoteBtn = createBtn(buttonContainer, 'info__button--promote', 'Promote')
 		const kickBtn = createBtn(buttonContainer, 'info__button--kick', 'Kick')
 
+		promoteBtn.addEventListener('click', () => {
+			console.log('promote ' + pokemon.name);
+			promoteInTeamLS(pokemon.name)
+			promote(card, primaryTeam, pokemon)
+		})
+
 		kickBtn.addEventListener('click', () => {
 			kickFromTeamLS(pokemon.name, primaryTeam)
-			kick(backupTeam, pokemon)
-
+			kick(card, pokemon)
 		})
 	}
-
-
 }
+
 
 function createBtn(container, className, text) {
 	const btn = createElement('button', ('info__button'))
@@ -89,11 +88,13 @@ function createBtn(container, className, text) {
 	return btn
 }
 
+
 function createElement(element, className) {
 	const x = document.createElement(element)
 	x.classList.add(className)
 	return x
 }
+
 
 function search(input, list) {
 	const searchList = list.filter(pokemon => {
@@ -102,15 +103,32 @@ function search(input, list) {
 	return searchList
 }
 
-function clearContent() {
-	mainContent.innerHTML = ''
+
+function clearContent(container) {
+	container.innerHTML = ''
 }
+
 
 function kick(element, pokemon) {
 	element.remove(pokemon)
 }
 
 
+function demote(card, toElement, pokemon) {
+	card.remove(pokemon)
+	createCard(toElement, pokemon)
+}
+
+
+function promote(card, toElement, pokemon) {
+	let teamFromLS = localStorage.getItem(LS_KEY)
+	teamFromLS = JSON.parse(teamFromLS)
+
+	if (teamFromLS.primaryChampions.length < 3) {
+		card.remove(pokemon)
+		createCard(toElement, pokemon)
+	}
+}
 
 
 export { createCard, search, clearContent, kick }

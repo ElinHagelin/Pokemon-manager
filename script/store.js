@@ -1,5 +1,9 @@
+import { createCard } from "./utils.js";
+
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
+const promoteBtn = document.querySelector('.info__button--promote')
+
 
 const LS_KEY = 'Pokemon-manager'
 const team = {
@@ -7,6 +11,16 @@ const team = {
 	primaryChampions: [],
 	backupChampions: []
 }
+
+
+function teamChampions() {
+	let teamFromLS = localStorage.getItem(LS_KEY)
+	if (teamFromLS) {
+		teamFromLS = JSON.parse(teamFromLS)
+	}
+	return teamFromLS
+}
+
 
 function ShowTeamName(teamNameHeading, selectOption) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
@@ -16,15 +30,22 @@ function ShowTeamName(teamNameHeading, selectOption) {
 		teamNameHeading.innerText = `Team ${teamFromLS.name}`
 		selectOption.innerText = `Team ${teamFromLS.name}`
 	}
+	const team = teamChampions()
+	team.primaryChampions.forEach(pokemon => {
+		createCard(primaryTeam, pokemon)
+	})
+	team.backupChampions.forEach(pokemon => {
+		createCard(backupTeam, pokemon)
+	})
+
+	// if (teamFromLS.primaryChampions.length < 3) {
+	// 	promoteBtn.disabled = false
+	// }
+	// else if (teamFromLS.primaryChampions.length >= 3) {
+	// 	promoteBtn.disabled = true
+	// }
 }
 
-function teamChampions() {
-	let teamFromLS = localStorage.getItem(LS_KEY)
-	if (teamFromLS) {
-		teamFromLS = JSON.parse(teamFromLS)
-	}
-	return teamFromLS
-}
 
 function storeTeam(teamName) {
 	console.log('kör storeTeam 1');
@@ -43,6 +64,7 @@ function storeTeam(teamName) {
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
 }
+
 
 function addToTeamLS(pokemon) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
@@ -64,12 +86,11 @@ function addToTeamLS(pokemon) {
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
+
 function kickFromTeamLS(pokemonName, container) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
 	teamFromLS = JSON.parse(teamFromLS)
 
-	// const index = teamFromLS.champions.indexOf(pokemon)
-	// const kicked = teamFromLS.champions.splice(index, 1)
 	if (container == primaryTeam) {
 		console.log('kick-button in primary ' + teamFromLS.primaryChampions);
 
@@ -84,39 +105,47 @@ function kickFromTeamLS(pokemonName, container) {
 			return pokemon.name !== pokemonName
 		})
 	}
-	// teamFromLS.primaryChampions.find(pokemon => {
-	// if (pokemon.name == pokemonName) {
 
-	// 	const index = teamFromLS.champions.indexOf(pokemon)
-	// 	const remove = teamFromLS.champions.splice(index, 1)
-	// }
-	// })
 	teamFromLS.primaryChampions.forEach(pokemon => console.log('primary: ' + pokemon.name))
 	teamFromLS.backupChampions.forEach(pokemon => console.log('backup: ' + pokemon.name))
 
-	teamFromLS.primaryChampions.forEach(pokemon => {
-		console.log(pokemon.name);
-	});
+
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
-function demoteInTeamLS(pokemon) {
+
+function demoteInTeamLS(pokemonName) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
 	teamFromLS = JSON.parse(teamFromLS)
 
-	const index = teamFromLS.champions.indexOf(pokemon)
-	console.log('index of pokemon to demote is: ' + index);
-	const demoted = teamFromLS.champions.splice(index, 1)
-
-	teamFromLS.backupChampions.push(demoted)
-
-	console.log(demoted.name + ' was demoted to backup');
+	teamFromLS.primaryChampions = teamFromLS.primaryChampions.filter(pokemon => {
+		if (pokemon.name == pokemonName) {
+			teamFromLS.backupChampions.push(pokemon)
+		}
+		return pokemon.name !== pokemonName
+	})
 
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
 
+function promoteInTeamLS(pokemonName) {
+	let teamFromLS = localStorage.getItem(LS_KEY)
+	teamFromLS = JSON.parse(teamFromLS)
 
-export { addToTeamLS, storeTeam, kickFromTeamLS, ShowTeamName, teamChampions, demoteInTeamLS }
+	if (teamFromLS.primaryChampions.length < 3) {
+		teamFromLS.backupChampions = teamFromLS.backupChampions.filter(pokemon => {
+			if (pokemon.name == pokemonName) {
+				teamFromLS.primaryChampions.push(pokemon)
+			}
+			return pokemon.name !== pokemonName
+		})
+	}
+	let teamToSave = JSON.stringify(teamFromLS)
+	localStorage.setItem(LS_KEY, teamToSave)
+}
+
+
+export { addToTeamLS, storeTeam, kickFromTeamLS, ShowTeamName, teamChampions, demoteInTeamLS, promoteInTeamLS, LS_KEY }

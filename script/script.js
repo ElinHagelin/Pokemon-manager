@@ -24,13 +24,15 @@ async function fullPokemonList() {
 	return data
 }
 
+
 ShowTeamName(teamName, team1)
+
 
 searchInput.addEventListener('keydown', async (event) => {
 	const data = await fullPokemonList()
 	const searchString = searchInput.value.toLowerCase()
 	if (event.key == 'Enter' && searchString != '') {
-		clearContent()
+		clearContent(mainContent)
 		const searchList = search(searchString, data.results)
 		searchList.forEach(async (pokemon) => {
 			createCard(mainContent, pokemon)
@@ -41,7 +43,7 @@ searchInput.addEventListener('keydown', async (event) => {
 		searchInput.value = ''
 	}
 	else if (event.key == 'Enter' && searchString == '') {
-		clearContent()
+		clearContent(mainContent)
 		data.results.forEach(async (pokemon) => {
 			createCard(mainContent, pokemon)
 		})
@@ -52,19 +54,17 @@ searchInput.addEventListener('keydown', async (event) => {
 	}
 })
 
+
 teamButton.addEventListener('click', () => {
 	searchView.classList.add('invisible')
 	teamView.classList.remove('invisible')
 	teamButton.classList.add('selected')
 	searchButton.classList.remove('selected')
-	const team = teamChampions()
-	team.primaryChampions.forEach(pokemon => {
-		createCard(primaryTeam, pokemon)
-	})
-	team.backupChampions.forEach(pokemon => {
-		createCard(backupTeam, pokemon)
-	})
+	clearContent(primaryTeam)
+	clearContent(backupTeam)
+	ShowTeamName(teamName, team1)
 })
+
 
 searchButton.addEventListener('click', () => {
 	searchView.classList.remove('invisible')
