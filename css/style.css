@@ -119,6 +119,14 @@
 	background-color: #295faf;
 }
 
+.disabled {
+	background-color: gray;
+}
+
+.disabled:hover {
+	background-color: gray;
+}
+
 .info__heading__container {
 	display: flex;
 	justify-content: space-between;

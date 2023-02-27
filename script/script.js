@@ -17,6 +17,7 @@ const editIcon = document.querySelector('.heading__icon')
 const teamName = document.querySelector('.team__heading__text')
 const addToTeamBtn = document.querySelector('.info__button--add')
 const team1 = document.querySelector('#team-1')
+const promoteBtn = document.querySelector('.info__button--promote')
 
 
 async function fullPokemonList() {
@@ -79,4 +80,12 @@ editIcon.addEventListener('click', () => {
 })
 
 
+// let teamFromLS = teamChampions()
 
+// if (teamFromLS.primaryChampions.length = 3) {
+// 	promoteBtn.classList.add('disabled')
+// } else if (teamFromLS.primaryChampions.length < 3) {
+
+// } {
+// 	promoteBtn.classList.remove('disabled')
+// }

@@ -1,12 +1,14 @@
 import { getImage } from "./fetching.js";
-import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS, LS_KEY } from "./store.js";
+import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS, teamChampions } from "./store.js";
 
 const mainContent = document.querySelector('.main__content')
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
+const promoteButton = document.querySelector('.info__button--promote')
 
 
 async function createCard(container, pokemon) {
+
 	const card = createElement('div', 'card')
 	const pokemonImg = createElement('img', 'card__image')
 	const cardInfo = createElement('section', 'card__info')
@@ -16,6 +18,7 @@ async function createCard(container, pokemon) {
 	const expandIcon = createElement('img', 'expand__icon')
 	const pokemonInfo = createElement('p', 'info__text')
 	const buttonContainer = createElement('div', 'info__button__container')
+	const promoteBtn = createElement('button', 'info__button--promote')
 
 	container.append(card)
 	card.append(pokemonImg)
@@ -37,6 +40,9 @@ async function createCard(container, pokemon) {
 	pokemonInfo.classList.add('invisible')
 	pokemonInfo.innerText = 'information om pokemon'
 
+	// const allPromoteBtns = document.querySelectorAll('.info__button--promoted')
+
+	toggleDisabled(promoteBtn)
 
 	if (container == mainContent) {
 		const addBtn = createBtn(cardInfo, 'info__button', 'Add to team')
@@ -54,22 +60,35 @@ async function createCard(container, pokemon) {
 			console.log('demote ' + pokemon.name);
 			demoteInTeamLS(pokemon.name)
 			demote(card, backupTeam, pokemon)
+			toggleDisabled(promoteBtn)
 		})
 
 		kickBtn.addEventListener('click', () => {
 			kickFromTeamLS(pokemon.name, primaryTeam)
 			kick(card, pokemon)
+			toggleDisabled(promoteBtn)
 		})
 
 	} else if (container == backupTeam) {
 		cardInfo.append(buttonContainer)
-		const promoteBtn = createBtn(buttonContainer, 'info__button--promote', 'Promote')
+		promoteBtn.classList.add('info__button')
+		buttonContainer.append(promoteBtn)
+		promoteBtn.innerText = 'Promote'
 		const kickBtn = createBtn(buttonContainer, 'info__button--kick', 'Kick')
 
-		promoteBtn.addEventListener('click', () => {
-			console.log('promote ' + pokemon.name);
-			promoteInTeamLS(pokemon.name)
-			promote(card, primaryTeam, pokemon)
+
+
+		promoteBtn.addEventListener('click', event => {
+			let teamFromLS = teamChampions()
+			if (teamFromLS.primaryChampions.length == 3) {
+				console.log(teamFromLS.primaryChampions);
+				event.preventDefault()
+			} else {
+				console.log('promote ' + pokemon.name);
+				promoteInTeamLS(pokemon.name)
+				promote(card, primaryTeam, pokemon)
+				toggleDisabled(promoteBtn)
+			}
 		})
 
 		kickBtn.addEventListener('click', () => {
@@ -121,13 +140,30 @@ function demote(card, toElement, pokemon) {
 
 
 function promote(card, toElement, pokemon) {
-	let teamFromLS = localStorage.getItem(LS_KEY)
-	teamFromLS = JSON.parse(teamFromLS)
+
+	card.remove(pokemon)
+	createCard(toElement, pokemon)
+}
+
+function toggleDisabled(button) {
+	let teamFromLS = teamChampions()
 
 	if (teamFromLS.primaryChampions.length < 3) {
-		card.remove(pokemon)
-		createCard(toElement, pokemon)
+		console.log('inside toggleDisabled, primary not full');
+
+		button.classList.remove('disabled')
+
+		// button.disabled = true
+	} else if (teamFromLS.primaryChampions.length = 3) {
+		console.log('inside toggleDisabled, primary full');
+
+		button.classList.add('disabled')
+
+
+		// button.disabled = false
+
 	}
+
 }
 
 
