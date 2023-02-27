@@ -52,8 +52,8 @@
 }
 
 .main__content,
-.content__team,
-.content__backup {
+.team__primary,
+.team__backup {
 	display: flex;
 	align-items: center;
 	padding: 1em;
@@ -196,7 +196,7 @@ main::-webkit-scrollbar-thumb {
 	}
 
 	.main__content,
-	.content__backup {
+	.team__backup {
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: 1em;

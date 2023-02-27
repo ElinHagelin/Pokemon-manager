@@ -18,3 +18,7 @@
 - team-namnet har select-val så att man kan ha flera lag inlagda.
 
 - dropdown-ul-lista istället för select-element.
+
+- Lägg till något som start på sök-vyn innan man hunnit söka på något så det slipper se tomt ut.
+
+- Lägg till något som start på lag-vyn innan man hunnit lägga till pokemon så det slipper se tomt ut.

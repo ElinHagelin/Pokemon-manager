@@ -18,12 +18,12 @@
 		<img src="./img/pngegg.png" alt="Pokémon logo" class="main__logo">
 		<h2 class="main__heading">Team Manager</h2>
 		<div class="main__buttons">
-			<button class="button button--search selected">Find Champion</button>
-			<button class="button button--team">My team</button>
+			<button class="button button--search">Find Champion</button>
+			<button class="button button--team selected">My team</button>
 		</div>
 	</header>
 	<main class="main">
-		<div class="main__search">
+		<div class="main__search invisible">
 			<section class="search__bar">
 				<label class="search__label" for="search-input">Search for pokémon</label>
 				<input type="text" id="search-input">
@@ -44,7 +44,7 @@
 
 			</section>
 		</div>
-		<div class="main__team invisible">
+		<div class="main__team">
 			<div class="team__heading__container">
 				<div class="team__heading">
 					<h3 class="team__heading__text">Add team name
@@ -60,8 +60,8 @@
 					</option>
 				</select>
 			</div>
-			<div class="content__team">
-				<div class="card chosen">
+			<div class="team__primary">
+				<!-- <div class="card chosen">
 					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
 					<section class="card__info">
 						<div class="info__heading__container">
@@ -104,43 +104,41 @@
 							<button class="info__button info__button--demote">Demote</button>
 							<button class="info__button info__button--kick">Kick</button>
 						</div>
-					</section>
-				</div>
+					</section> -->
 			</div>
 
 
+
 			<h4>Backup team members</h4>
-			<div class="content__backup">
-				<div class="card">
-					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
-					<section class="card__info">
-						<div class="info__heading__container">
-							<h5 class="info__heading">Pikachu</h5>
-							<button class="info__expand"><img src="./img/down (1).png" alt=""
-									class="expand__icon"></button>
-						</div>
-						<p class="info__text">information about pikachu</p>
-						<div class="info__button__container">
-							<button class="info__button info__button--promote">Promote</button>
-							<button class="info__button info__button--kick">Kick</button>
-						</div>
-					</section>
-				</div>
-				<div class="card">
-					<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
-					<section class="card__info">
-						<div class="info__heading__container">
-							<h5 class="info__heading">Pikachu</h5>
-							<button class="info__expand"><img src="./img/down (1).png" alt=""
-									class="expand__icon"></button>
-						</div>
-						<p class="info__text">information about pikachu</p>
-						<div class="info__button__container">
-							<button class="info__button info__button--promote">Promote</button>
-							<button class="info__button info__button--kick">Kick</button>
-						</div>
-					</section>
-				</div>
+			<div class="team__backup">
+				<!-- <div class="card">
+				<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+				<section class="card__info">
+					<div class="info__heading__container">
+						<h5 class="info__heading">Pikachu</h5>
+						<button class="info__expand"><img src="./img/down (1).png" alt="" class="expand__icon"></button>
+					</div>
+					<p class="info__text">information about pikachu</p>
+					<div class="info__button__container">
+						<button class="info__button info__button--promote">Promote</button>
+						<button class="info__button info__button--kick">Kick</button>
+					</div>
+				</section>
+			</div>
+			<div class="card">
+				<img src="./img/Pikachu.jpg" alt="Pikachu-image" class="card__image">
+				<section class="card__info">
+					<div class="info__heading__container">
+						<h5 class="info__heading">Pikachu</h5>
+						<button class="info__expand"><img src="./img/down (1).png" alt="" class="expand__icon"></button>
+					</div>
+					<p class="info__text">information about pikachu</p>
+					<div class="info__button__container">
+						<button class="info__button info__button--promote">Promote</button>
+						<button class="info__button info__button--kick">Kick</button>
+					</div>
+				</section>
+			</div> -->
 			</div>
 		</div>
 	</main>
