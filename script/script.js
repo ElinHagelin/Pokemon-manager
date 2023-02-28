@@ -1,5 +1,5 @@
 import { getPokemonList } from "./fetching.js";
-import { createCard, search, clearContent, kick, toggleDisabled } from "./utils.js";
+import { createCard, search, clearContent, kick, toggleDisabled, searchStartScreen, teamStartScreen } from "./utils.js";
 import { createOverlay } from "./overlay.js"
 import { addToTeamLS, ShowTeamName, teamChampions } from "./store.js";
 
@@ -20,9 +20,7 @@ const teamName = document.querySelector('.team__heading__text')
 const addToTeamBtn = document.querySelector('.info__button--add')
 const team1 = document.querySelector('#team-1')
 const promoteBtn = document.querySelector('.info__button--promote')
-const searchStart = document.querySelector('.search__startscreen')
-const teamStart = document.querySelector('.team__startscreen')
-const backupHeading = document.querySelector('.backup__heading')
+
 
 
 
@@ -37,24 +35,7 @@ teamStartScreen()
 searchStartScreen()
 
 
-function searchStartScreen() {
-	if (mainContentSearch.childNodes.length == 2) {
-		searchStart.classList.add('invisible')
-	} else if (mainContentSearch.childNodes.length < 2) {
-		searchStart.classList.remove('invisible')
-	}
-}
 
-function teamStartScreen() {
-	if (primaryTeam.childNodes.length > 3) {
-		teamStart.classList.add('invisible')
-		backupHeading.classList.remove('invisible')
-
-	} else if (primaryTeam.childNodes.length <= 3 && backupTeam.childNodes.length <= 3) {
-		teamStart.classList.remove('invisible')
-		backupHeading.classList.add('invisible')
-	}
-}
 
 console.log(primaryTeam.childNodes);
 console.log(backupTeam.childNodes);

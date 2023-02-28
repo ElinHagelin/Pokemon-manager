@@ -2,6 +2,7 @@ import { getImage } from "./fetching.js";
 import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS, teamChampions } from "./store.js";
 
 const mainContent = document.querySelector('.main__content')
+const mainContentSearch = document.querySelector('.main__content--search')
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
 const promoteButton = document.querySelector('.info__button--promote')
