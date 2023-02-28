@@ -5,6 +5,22 @@
 	border-radius: 1em;
 }
 
+.team__overlay {
+	background-color: rgba(255, 27, 1, 0.7);
+	padding: 0.5em;
+	position: sticky;
+	top: 0px;
+	transition: opacity .5s;
+}
+
+.team__overlay__para {
+	font-size: 1.2em;
+}
+
+.overlay__promote {
+	background-color: rgba(28, 178, 28, 0.7);
+}
+
 .team__heading__container {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -19,7 +35,6 @@
 	border-radius: 1em;
 	border: none;
 	font-size: 1em;
-	margin-top: 0.8em;
 	cursor: pointer;
 	justify-self: end;
 
@@ -32,7 +47,6 @@
 .team__heading {
 	grid-column: 1;
 	justify-self: center;
-	margin-top: 1em;
 	display: flex;
 }
 
@@ -59,10 +73,6 @@
 	font-size: 1.2em;
 }
 
-.info__button--promote {
-	background-color: #3466AF;
-}
-
 .info__button--promote,
 .info__button--demote,
 .info__button--kick {
@@ -75,12 +85,14 @@
 }
 
 .info__button--demote:hover,
-.info__button--kick:hover {
+.info__button--demote:active,
+.info__button--kick:hover,
+.info__button--kick:active {
 	background-color: rgb(212, 55, 55);
 }
 
-.info__button--add:hover,
-.info__button--promote:hover {
+.info__button--promote:hover,
+.info__button--promote:active {
 	background-color: #295faf;
 }
 

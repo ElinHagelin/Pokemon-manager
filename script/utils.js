@@ -9,6 +9,11 @@ const promoteButton = document.querySelector('.info__button--promote')
 const searchStart = document.querySelector('.search__startscreen')
 const teamStart = document.querySelector('.team__startscreen')
 const backupHeading = document.querySelector('.backup__heading')
+const addOverlay = document.querySelector('.add__overlay')
+const addOverlayText = document.querySelector('.add__overlay__para')
+const teamOverlay = document.querySelector('.team__overlay')
+const teamOverlayText = document.querySelector('.team__overlay__para')
+
 
 
 function searchStartScreen() {
@@ -71,6 +76,9 @@ async function createCard(container, pokemon) {
 		addBtn.addEventListener('click', () => {
 			console.log('Du klickade på: ' + pokemon.name);
 			addToTeamLS(pokemon);
+			teamStartScreen()
+			showOverlay('add', capitalName, addOverlay, addOverlayText)
+			fadeOverlay(addOverlay)
 		})
 	} else if (container == primaryTeam) {
 		cardInfo.append(buttonContainer)
@@ -82,6 +90,8 @@ async function createCard(container, pokemon) {
 			demoteInTeamLS(pokemon.name)
 			demote(card, backupTeam, pokemon)
 			toggleDisabled()
+			showOverlay('demote', capitalName, teamOverlay, teamOverlayText)
+			fadeOverlay(teamOverlay)
 		})
 
 		kickBtn.addEventListener('click', () => {
@@ -89,6 +99,8 @@ async function createCard(container, pokemon) {
 			kick(card, pokemon)
 			toggleDisabled()
 			teamStartScreen()
+			showOverlay('kick', capitalName, teamOverlay, teamOverlayText)
+			fadeOverlay(teamOverlay)
 		})
 
 	} else if (container == backupTeam) {
@@ -112,6 +124,8 @@ async function createCard(container, pokemon) {
 			promoteInTeamLS(pokemon.name)
 			promote(card, primaryTeam, pokemon)
 			toggleDisabled()
+			showOverlay('promote', capitalName, teamOverlay, teamOverlayText)
+			fadeOverlay(teamOverlay)
 		})
 
 		toggleDisabled()
@@ -120,6 +134,8 @@ async function createCard(container, pokemon) {
 			kickFromTeamLS(pokemon.name, backupTeam)
 			kick(card, pokemon)
 			teamStartScreen()
+			showOverlay('kick', capitalName, teamOverlay, teamOverlayText)
+			fadeOverlay(teamOverlay)
 		})
 	}
 }
@@ -204,6 +220,27 @@ function toggleDisabled() {
 			allPromoteBtns[i].classList.remove('disabled')
 		}
 	}
+}
+
+function showOverlay(action, pokemonName, overlay, overlayText) {
+	if (action == 'add') {
+		overlayText.innerText = 'Added ' + pokemonName + ' to team';
+	} else if (action == 'demote') {
+		overlayText.innerText = 'Demoted ' + pokemonName + ' to backup';
+	} else if (action == 'promote') {
+		overlay.classList.add('overlay__promote')
+		overlayText.innerText = 'Promoted ' + pokemonName + ' to primary';
+	} else if (action == 'kick') {
+		overlayText.innerText = 'Kicked ' + pokemonName + ' from team';
+	}
+	overlay.classList.remove('fade-out')
+}
+
+function fadeOverlay(overlay) {
+	setTimeout(() => {
+		overlay.classList.add('fade-out')
+	}, 2000);
+	overlay.classList.remove('overlay__promote')
 }
 
 export { createCard, search, clearContent, kick, toggleDisabled, teamStartScreen, searchStartScreen }

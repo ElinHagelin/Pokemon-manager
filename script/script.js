@@ -80,6 +80,7 @@ teamButton.addEventListener('click', () => {
 	clearContent(primaryTeam)
 	clearContent(backupTeam)
 	ShowTeamName(teamName, team1)
+	teamStartScreen()
 	toggleDisabled()
 })
 

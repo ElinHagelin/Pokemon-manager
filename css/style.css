@@ -58,9 +58,6 @@
 
 .info__button {
 	background-color: #3466AF;
-}
-
-.info__button {
 	color: white;
 	padding: 0.7em 1.2em;
 	border-radius: 1em;
@@ -69,6 +66,17 @@
 	align-self: center;
 	cursor: pointer;
 	text-align: center;
+	box-shadow: 0 6px #999;
+}
+
+.info__button:active {
+	box-shadow: 0 4px #666;
+	transform: translateY(3px);
+}
+
+.info__button--add:hover,
+.info__button--add:active {
+	background-color: #295faf;
 }
 
 .info__heading__container {
@@ -86,6 +94,22 @@
 	cursor: pointer;
 	padding: 0;
 	border: none;
+}
+
+.add__overlay {
+	background-color: rgba(28, 178, 28, 0.7);
+	padding: 0.5em;
+	position: sticky;
+	top: 0px;
+	transition: opacity .5s;
+}
+
+.add__overlay__para {
+	font-size: 1.2em;
+}
+
+.fade-out {
+	opacity: 0;
 }
 
 main::-webkit-scrollbar {
