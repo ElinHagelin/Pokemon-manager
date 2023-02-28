@@ -1,4 +1,9 @@
-.team__startscreen {}
+.team__startscreen {
+	background-color: rgba(216, 216, 216, 0.7);
+	padding: 2em 0.5em;
+	margin: 2em;
+	border-radius: 1em;
+}
 
 .team__heading__container {
 	display: grid;
