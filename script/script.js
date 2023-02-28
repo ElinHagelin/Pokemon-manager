@@ -6,6 +6,8 @@ import { addToTeamLS, ShowTeamName, teamChampions } from "./store.js";
 
 const html = document.querySelector('html')
 const mainContent = document.querySelector('.main__content')
+const mainContentSearch = document.querySelector('.main__content--search')
+const mainContentTeam = document.querySelector('.main__content--team')
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
 const searchInput = document.querySelector('#search-input')
@@ -18,6 +20,10 @@ const teamName = document.querySelector('.team__heading__text')
 const addToTeamBtn = document.querySelector('.info__button--add')
 const team1 = document.querySelector('#team-1')
 const promoteBtn = document.querySelector('.info__button--promote')
+const searchStart = document.querySelector('.search__startscreen')
+const teamStart = document.querySelector('.team__startscreen')
+const backupHeading = document.querySelector('.backup__heading')
+
 
 
 async function fullPokemonList() {
@@ -28,9 +34,24 @@ async function fullPokemonList() {
 
 ShowTeamName(teamName, team1)
 
+if (mainContentSearch.childNodes.length == 2) {
+	searchStart.classList.add('invisible')
+} else if (mainContentSearch.childNodes.length < 2) {
+	searchStart.classList.remove('invisible')
+}
+
+if (primaryTeam.childNodes.length > 0) {
+	teamStart.classList.add('invisible')
+	backupHeading.classList.remove('invisible')
+
+} else if (primaryTeam.childNodes.length < 1) {
+	teamStart.classList.remove('invisible')
+	backupHeading.classList.add('invisible')
+}
 
 searchInput.addEventListener('keydown', async (event) => {
 	const data = await fullPokemonList()
+
 	const searchString = searchInput.value.toLowerCase()
 	if (event.key == 'Enter' && searchString != '') {
 		clearContent(mainContent)

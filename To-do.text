@@ -1,17 +1,7 @@
 
-- add-knappen lägger till pokemon i laget (om det finns plats i main team läggs den där, annars i backup)
-
 - drag and drop i main-laget (håller man den i backup-containern läggs den överst i backup)
 
-- Spara laget i localStorage
-
 - Sätt att byta namn på pokemon i laget
-
-- kick- knappen tar bort pokemon ur laget
-
-- demote flyttar pokemon till Backup
-
-- promote flyttar upp pokemon till laget.
 
 - promote disabled när laget är fullt
 
@@ -19,6 +9,4 @@
 
 - dropdown-ul-lista istället för select-element.
 
-- Lägg till något som start på sök-vyn innan man hunnit söka på något så det slipper se tomt ut.
-
-- Lägg till något som start på lag-vyn innan man hunnit lägga till pokemon så det slipper se tomt ut.
+-klick-effekt när man trycker på add, demote, promote eller kick

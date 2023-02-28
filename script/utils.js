@@ -90,7 +90,7 @@ async function createCard(container, pokemon) {
 		})
 
 		kickBtn.addEventListener('click', () => {
-			kickFromTeamLS(pokemon.name, primaryTeam)
+			kickFromTeamLS(pokemon.name, backupTeam)
 			kick(card, pokemon)
 		})
 	}

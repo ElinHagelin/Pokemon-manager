@@ -101,14 +101,14 @@ function kickFromTeamLS(pokemonName, container) {
 	teamFromLS = JSON.parse(teamFromLS)
 
 	if (container == primaryTeam) {
-		console.log('kick: ' + pokemonName);
+		console.log('kick from primary: ' + pokemonName);
 
 		teamFromLS.primaryChampions = teamFromLS.primaryChampions.filter(pokemon => {
 			return pokemon.name !== pokemonName
 		})
-		console.log(teamFromLS.primaryChampions);
-	} else {
-		console.log('kick-button in backup ' + teamFromLS.backupChampions);
+
+	} else if (container == backupTeam) {
+		console.log('kick from backup: ' + pokemonName);
 
 		teamFromLS.backupChampions = teamFromLS.backupChampions.filter(pokemon => {
 			return pokemon.name !== pokemonName

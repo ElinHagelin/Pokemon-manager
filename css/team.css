@@ -46,7 +46,7 @@
 	padding: 1em;
 }
 
-.main__content,
+.main__content--team,
 .team__primary,
 .team__backup {
 	display: flex;
