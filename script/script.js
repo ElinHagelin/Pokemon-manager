@@ -33,20 +33,27 @@ async function fullPokemonList() {
 
 
 ShowTeamName(teamName, team1)
+teamStartScreen()
+searchStartScreen()
 
-if (mainContentSearch.childNodes.length == 2) {
-	searchStart.classList.add('invisible')
-} else if (mainContentSearch.childNodes.length < 2) {
-	searchStart.classList.remove('invisible')
+
+function searchStartScreen() {
+	if (mainContentSearch.childNodes.length == 2) {
+		searchStart.classList.add('invisible')
+	} else if (mainContentSearch.childNodes.length < 2) {
+		searchStart.classList.remove('invisible')
+	}
 }
 
-if (primaryTeam.childNodes.length > 3) {
-	teamStart.classList.add('invisible')
-	backupHeading.classList.remove('invisible')
+function teamStartScreen() {
+	if (primaryTeam.childNodes.length > 3) {
+		teamStart.classList.add('invisible')
+		backupHeading.classList.remove('invisible')
 
-} else if (primaryTeam.childNodes.length <= 3) {
-	teamStart.classList.remove('invisible')
-	backupHeading.classList.add('invisible')
+	} else if (primaryTeam.childNodes.length <= 3 && backupTeam.childNodes.length <= 3) {
+		teamStart.classList.remove('invisible')
+		backupHeading.classList.add('invisible')
+	}
 }
 
 console.log(primaryTeam.childNodes);

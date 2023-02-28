@@ -5,7 +5,29 @@ const mainContent = document.querySelector('.main__content')
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
 const promoteButton = document.querySelector('.info__button--promote')
+const searchStart = document.querySelector('.search__startscreen')
+const teamStart = document.querySelector('.team__startscreen')
+const backupHeading = document.querySelector('.backup__heading')
 
+
+function searchStartScreen() {
+	if (mainContentSearch.childNodes.length == 2) {
+		searchStart.classList.add('invisible')
+	} else if (mainContentSearch.childNodes.length < 2) {
+		searchStart.classList.remove('invisible')
+	}
+}
+
+function teamStartScreen() {
+	if (primaryTeam.childNodes.length > 3) {
+		teamStart.classList.add('invisible')
+		backupHeading.classList.remove('invisible')
+
+	} else if (primaryTeam.childNodes.length <= 3 && backupTeam.childNodes.length <= 3) {
+		teamStart.classList.remove('invisible')
+		backupHeading.classList.add('invisible')
+	}
+}
 
 async function createCard(container, pokemon) {
 
@@ -65,6 +87,7 @@ async function createCard(container, pokemon) {
 			kickFromTeamLS(pokemon.name, primaryTeam)
 			kick(card, pokemon)
 			toggleDisabled()
+			teamStartScreen()
 		})
 
 	} else if (container == backupTeam) {
@@ -95,6 +118,7 @@ async function createCard(container, pokemon) {
 		kickBtn.addEventListener('click', () => {
 			kickFromTeamLS(pokemon.name, backupTeam)
 			kick(card, pokemon)
+			teamStartScreen()
 		})
 	}
 }
@@ -181,4 +205,4 @@ function toggleDisabled() {
 	}
 }
 
-export { createCard, search, clearContent, kick, toggleDisabled }
+export { createCard, search, clearContent, kick, toggleDisabled, teamStartScreen, searchStartScreen }
