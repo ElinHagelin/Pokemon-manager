@@ -40,8 +40,6 @@ async function createCard(container, pokemon) {
 	pokemonInfo.classList.add('invisible')
 	pokemonInfo.innerText = 'information om pokemon'
 
-	// const allPromoteBtns = document.querySelectorAll('.info__button--promoted')
-
 	toggleDisabled(promoteBtn)
 
 	if (container == mainContent) {

@@ -1,8 +1,3 @@
-.invisible {
-	/* visibility: hidden; */
-	display: none;
-}
-
 .search__label {
 	font-size: 1.1em;
 	margin-top: 1em;
@@ -14,46 +9,7 @@
 	font-size: 1em;
 }
 
-.team__heading__container {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: 1fr 1fr;
-	margin-bottom: -1.5em;
-}
-
-#team-select {
-	grid-row: 2;
-	padding: 0.3em;
-	background: transparent;
-	border-radius: 1em;
-	border: none;
-	font-size: 1em;
-	margin-top: 0.8em;
-	cursor: pointer;
-	justify-self: end;
-
-}
-
-#team-select>option {
-	background-color: rgb(255, 154, 154);
-}
-
-.team__heading {
-	grid-column: 1;
-	justify-self: center;
-	margin-top: 1em;
-	display: flex;
-}
-
-.heading__icon {
-	margin: 0 0.5em;
-	max-height: 18px;
-	cursor: pointer;
-}
-
-.main__content,
-.team__primary,
-.team__backup {
+.main__content {
 	display: flex;
 	align-items: center;
 	padding: 1em;
@@ -82,8 +38,7 @@
 	gap: 0.5em;
 }
 
-.info__button,
-.info__button--promote {
+.info__button {
 	background-color: #3466AF;
 }
 
@@ -96,35 +51,6 @@
 	align-self: center;
 	cursor: pointer;
 	text-align: center;
-}
-
-.info__button--promote,
-.info__button--demote,
-.info__button--kick {
-	width: 6em;
-}
-
-.info__button--demote,
-.info__button--kick {
-	background-color: rgb(213, 68, 68);
-}
-
-.info__button--demote:hover,
-.info__button--kick:hover {
-	background-color: rgb(212, 55, 55);
-}
-
-.info__button--add:hover,
-.info__button--promote:hover {
-	background-color: #295faf;
-}
-
-.disabled {
-	background-color: gray;
-}
-
-.disabled:hover {
-	background-color: gray;
 }
 
 .info__heading__container {
@@ -168,43 +94,9 @@ main::-webkit-scrollbar-thumb {
 	}
 }
 
-@media screen and (min-width: 600px) {
-	.team__heading__container {
-		grid-template-rows: 1fr;
-		margin-bottom: unset;
-	}
-
-	.team__heading {
-		grid-column: 1;
-		grid-row: 1;
-		justify-self: center;
-		font-size: 1.3em;
-	}
-
-	.heading__icon {
-		margin: 0.1em 0.5em;
-		max-height: 20px;
-	}
-
-	#team-select {
-		grid-column: 1;
-		grid-row: 1;
-		justify-self: end;
-	}
-}
-
 @media screen and (min-width: 800px) {
 
-	.chosen {
-		min-width: 500px;
-	}
-
-	.chosen .info__button {
-		padding: 0.7em 1.2em;
-	}
-
-	.main__content,
-	.team__backup {
+	.main__content {
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: 1em;
