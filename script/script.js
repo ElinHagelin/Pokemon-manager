@@ -1,5 +1,5 @@
 import { getPokemonList } from "./fetching.js";
-import { createCard, search, clearContent, kick } from "./utils.js";
+import { createCard, search, clearContent, kick, toggleDisabled } from "./utils.js";
 import { createOverlay } from "./overlay.js"
 import { addToTeamLS, ShowTeamName, teamChampions } from "./store.js";
 
@@ -40,14 +40,20 @@ if (mainContentSearch.childNodes.length == 2) {
 	searchStart.classList.remove('invisible')
 }
 
-if (primaryTeam.childNodes.length > 0) {
+if (primaryTeam.childNodes.length > 3) {
 	teamStart.classList.add('invisible')
 	backupHeading.classList.remove('invisible')
 
-} else if (primaryTeam.childNodes.length < 1) {
+} else if (primaryTeam.childNodes.length <= 3) {
 	teamStart.classList.remove('invisible')
 	backupHeading.classList.add('invisible')
 }
+
+console.log(primaryTeam.childNodes);
+console.log(backupTeam.childNodes);
+
+// promoteBtn.disabled = true
+
 
 searchInput.addEventListener('keydown', async (event) => {
 	const data = await fullPokemonList()
@@ -76,6 +82,7 @@ searchInput.addEventListener('keydown', async (event) => {
 	}
 })
 
+toggleDisabled()
 
 teamButton.addEventListener('click', () => {
 	searchView.classList.add('invisible')
@@ -85,6 +92,7 @@ teamButton.addEventListener('click', () => {
 	clearContent(primaryTeam)
 	clearContent(backupTeam)
 	ShowTeamName(teamName, team1)
+	toggleDisabled()
 })
 
 
@@ -100,13 +108,3 @@ editIcon.addEventListener('click', () => {
 	createOverlay(html)
 })
 
-
-// let teamFromLS = teamChampions()
-
-// if (teamFromLS.primaryChampions.length = 3) {
-// 	promoteBtn.classList.add('disabled')
-// } else if (teamFromLS.primaryChampions.length < 3) {
-
-// } {
-// 	promoteBtn.classList.remove('disabled')
-// }

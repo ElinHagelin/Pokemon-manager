@@ -2,7 +2,7 @@ import { createCard } from "./utils.js";
 
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
-const promoteBtn = document.querySelector('.info__button--promote')
+// const promoteBtn = document.querySelector('.info__button--promote')
 
 
 const LS_KEY = 'Pokemon-manager'

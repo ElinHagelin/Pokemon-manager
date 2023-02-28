@@ -40,7 +40,7 @@ async function createCard(container, pokemon) {
 	pokemonInfo.classList.add('invisible')
 	pokemonInfo.innerText = 'information om pokemon'
 
-	toggleDisabled(promoteBtn)
+
 
 	if (container == mainContent) {
 		const addBtn = createBtn(cardInfo, 'info__button', 'Add to team')
@@ -58,13 +58,13 @@ async function createCard(container, pokemon) {
 			console.log('demote ' + pokemon.name);
 			demoteInTeamLS(pokemon.name)
 			demote(card, backupTeam, pokemon)
-			toggleDisabled(promoteBtn)
+			toggleDisabled()
 		})
 
 		kickBtn.addEventListener('click', () => {
 			kickFromTeamLS(pokemon.name, primaryTeam)
 			kick(card, pokemon)
-			toggleDisabled(promoteBtn)
+			toggleDisabled()
 		})
 
 	} else if (container == backupTeam) {
@@ -77,17 +77,20 @@ async function createCard(container, pokemon) {
 
 
 		promoteBtn.addEventListener('click', event => {
-			let teamFromLS = teamChampions()
-			if (teamFromLS.primaryChampions.length == 3) {
-				console.log(teamFromLS.primaryChampions);
+
+			// const allPromoteBtns = document.querySelectorAll('.info__button--promote')
+			console.log(primaryTeam.childNodes);
+			if (primaryTeam.childNodes.length < 3) {
+				console.log('prevent promote');
 				event.preventDefault()
-			} else {
-				console.log('promote ' + pokemon.name);
-				promoteInTeamLS(pokemon.name)
-				promote(card, primaryTeam, pokemon)
-				toggleDisabled(promoteBtn)
 			}
+			console.log('promote ' + pokemon.name);
+			promoteInTeamLS(pokemon.name)
+			promote(card, primaryTeam, pokemon)
+			toggleDisabled()
 		})
+
+		toggleDisabled()
 
 		kickBtn.addEventListener('click', () => {
 			kickFromTeamLS(pokemon.name, backupTeam)
@@ -95,6 +98,7 @@ async function createCard(container, pokemon) {
 		})
 	}
 }
+
 
 
 function createBtn(container, className, text) {
@@ -143,26 +147,38 @@ function promote(card, toElement, pokemon) {
 	createCard(toElement, pokemon)
 }
 
-function toggleDisabled(button) {
-	let teamFromLS = teamChampions()
+// function toggleDisabled(button) {
 
-	if (teamFromLS.primaryChampions.length < 3) {
-		console.log('inside toggleDisabled, primary not full');
+// 	if (primaryTeam.childNodes.length == 3 && backupTeam.childNodes > 0) {
+// 		console.log('inside toggleDisabled, primary full');
+// 		button.preventDefault()
+// 		button.classList.add('disabled')
+// 	}
+// 	else if (primaryTeam.childNodes.length < 3 && backupTeam.childNodes.length > 0) {
+// 		console.log('inside toggleDisabled, primary not full');
+// 		button.classList.remove('disabled')
+// 	}
+// }
 
-		button.classList.remove('disabled')
+function toggleDisabled() {
+	const allPromoteBtns = document.querySelectorAll('.info__button--promote')
 
-		// button.disabled = true
-	} else if (teamFromLS.primaryChampions.length = 3) {
-		console.log('inside toggleDisabled, primary full');
+	if (primaryTeam.childNodes.length == 6 && backupTeam.childNodes.length > 3) {
 
-		button.classList.add('disabled')
-
-
-		// button.disabled = false
-
+		for (let i = 0; i < allPromoteBtns.length; i++) {
+			console.log('disabling buttons');
+			allPromoteBtns[i].disabled = true;
+			allPromoteBtns[i].classList.add('disabled')
+		}
 	}
+	else if (primaryTeam.childNodes.length < 6 && backupTeam.childNodes.length > 3) {
 
+		for (let i = 0; i < allPromoteBtns.length; i++) {
+			console.log('disabling buttons');
+			allPromoteBtns[i].disabled = false;
+			allPromoteBtns[i].classList.remove('disabled')
+		}
+	}
 }
 
-
-export { createCard, search, clearContent, kick }
+export { createCard, search, clearContent, kick, toggleDisabled }

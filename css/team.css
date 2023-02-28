@@ -55,6 +55,10 @@
 	width: 100%;
 }
 
+.backup__heading {
+	font-size: 1.2em;
+}
+
 .info__button--promote {
 	background-color: #3466AF;
 }
