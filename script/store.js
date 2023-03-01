@@ -72,6 +72,18 @@ function storeTeam(teamName) {
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
+function storeNick(pokemonName, nick, cardHeading) {
+	let teamFromLS = localStorage.getItem(LS_KEY)
+	teamFromLS = JSON.parse(teamFromLS)
+
+	let newName = pokemonName + nick
+	teamFromLS.name = newName
+	cardHeading.innerText = newName
+
+	let teamToSave = JSON.stringify(teamFromLS)
+	localStorage.setItem(LS_KEY, teamToSave)
+}
+
 
 function addToTeamLS(pokemon) {
 	let teamFromLS = teamChampions()

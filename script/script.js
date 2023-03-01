@@ -20,6 +20,7 @@ const teamName = document.querySelector('.team__heading__text')
 const addToTeamBtn = document.querySelector('.info__button--add')
 const team1 = document.querySelector('#team-1')
 const promoteBtn = document.querySelector('.info__button--promote')
+const editNick = document.querySelector('.edit-nick')
 
 
 
@@ -94,6 +95,10 @@ searchButton.addEventListener('click', () => {
 
 
 editIcon.addEventListener('click', () => {
-	createOverlay(html)
+	createOverlay(html, 'Name your team')
 })
+
+// editNick.addEventListener('click', () => {
+// 	createOverlay(html, 'Name your pokémon')
+// })
 

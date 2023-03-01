@@ -7,6 +7,7 @@
 
 .main__team {
 	max-height: 100%;
+	position: relative;
 }
 
 .team__overlay {
@@ -30,6 +31,7 @@
 	grid-template-columns: 1fr;
 	grid-template-rows: 1fr 1fr;
 	margin-bottom: -1.5em;
+	margin-top: 1.5em;
 }
 
 #team-select {
@@ -73,6 +75,11 @@
 	width: 100%;
 }
 
+.main__content--team {
+	margin-top: 0;
+	padding-top: 0;
+}
+
 .backup__heading {
 	font-size: 1.2em;
 }
@@ -106,6 +113,10 @@
 
 .disabled:hover {
 	background-color: gray;
+}
+
+.edit-nick {
+	cursor: pointer;
 }
 
 @media screen and (min-width: 600px) {

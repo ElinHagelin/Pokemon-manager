@@ -1,6 +1,8 @@
 import { getImage } from "./fetching.js";
+import { createOverlay } from "./overlay.js";
 import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS, teamChampions } from "./store.js";
 
+const html = document.querySelector('html')
 const mainContent = document.querySelector('.main__content')
 const mainContentSearch = document.querySelector('.main__content--search')
 const primaryTeam = document.querySelector('.team__primary')
@@ -13,6 +15,7 @@ const addOverlay = document.querySelector('.add__overlay')
 const addOverlayText = document.querySelector('.add__overlay__para')
 const teamOverlay = document.querySelector('.team__overlay')
 const teamOverlayText = document.querySelector('.team__overlay__para')
+
 
 
 
@@ -92,6 +95,13 @@ async function createCard(container, pokemon) {
 		const demoteBtn = createBtn(buttonContainer, 'info__button--demote', 'Demote')
 		const kickBtn = createBtn(buttonContainer, 'info__button--kick', 'Kick')
 
+		const editNick = createElement('img', 'edit-nick')
+		editNick.src = ('../img/🦆 icon _pencil_.png')
+
+		headingContainer.insertBefore(editNick, expandBtn)
+		// headingContainer.append(editNick)
+
+
 		demoteBtn.addEventListener('click', () => {
 			console.log('demote ' + pokemon.name);
 			demoteInTeamLS(pokemon.name)
@@ -109,6 +119,9 @@ async function createCard(container, pokemon) {
 			showOverlay('kick', capitalName, teamOverlay, teamOverlayText)
 			fadeOverlay(teamOverlay)
 		})
+		editNick.addEventListener('click', () => {
+			createOverlay(html, 'Name your pokémon')
+		})
 
 	} else if (container == backupTeam) {
 		cardInfo.append(buttonContainer)
@@ -116,6 +129,10 @@ async function createCard(container, pokemon) {
 		buttonContainer.append(promoteBtn)
 		promoteBtn.innerText = 'Promote'
 		const kickBtn = createBtn(buttonContainer, 'info__button--kick', 'Kick')
+		const editNick = createElement('img', 'edit-nick')
+		editNick.src = '../img/🦆 icon _pencil_.png'
+		headingContainer.insertBefore(editNick, expandBtn)
+		// headingContainer.append(editNick)
 
 
 
@@ -143,6 +160,9 @@ async function createCard(container, pokemon) {
 			teamStartScreen()
 			showOverlay('kick', capitalName, teamOverlay, teamOverlayText)
 			fadeOverlay(teamOverlay)
+		})
+		editNick.addEventListener('click', () => {
+			createOverlay(html, 'Name your pokémon')
 		})
 	}
 }
