@@ -17,6 +17,9 @@ const teamOverlay = document.querySelector('.team__overlay')
 const teamOverlayText = document.querySelector('.team__overlay__para')
 
 
+// const primaryTeamList = []
+// const backupTeamList = []
+
 // Startskärm på söksidan innan man sökt på något
 
 function searchStartScreen() {
@@ -108,7 +111,7 @@ async function createCard(container, pokemon) {
 
 		demoteBtn.addEventListener('click', () => {
 			console.log('demote ' + pokemon.name);
-			demoteInTeamLS(pokemon.name)
+			demoteInTeamLS(pokemon)
 			demote(card, backupTeam, pokemon)
 			toggleDisabled()
 			showOverlay('demote', capitalName, teamOverlay, teamOverlayText)
@@ -116,10 +119,14 @@ async function createCard(container, pokemon) {
 		})
 
 		kickBtn.addEventListener('click', () => {
-			kickFromTeamLS(pokemon.name, primaryTeam)
+			kickFromTeamLS(pokemon, primaryTeam)
 			kick(card, pokemon)
 			toggleDisabled()
 			teamStartScreen()
+			if (!primaryTeam) {
+				primaryTeam = [];
+			}
+			// console.log(primaryTeam.findIndex(x => x.name = pokemon.name));
 			showOverlay('kick', capitalName, teamOverlay, teamOverlayText)
 			fadeOverlay(teamOverlay)
 		})
@@ -143,12 +150,12 @@ async function createCard(container, pokemon) {
 		promoteBtn.addEventListener('click', event => {
 
 			console.log(primaryTeam.childNodes);
-			if (primaryTeam.childNodes.length < 3) {
+			if (primaryTeam.childNodes.length >= 3) {
 				console.log('prevent promote');
 				event.preventDefault()
 			}
 			console.log('promote ' + pokemon.name);
-			promoteInTeamLS(pokemon.name)
+			promoteInTeamLS(pokemon)
 			promote(card, primaryTeam, pokemon)
 			toggleDisabled()
 			showOverlay('promote', capitalName, teamOverlay, teamOverlayText)
@@ -158,7 +165,7 @@ async function createCard(container, pokemon) {
 		toggleDisabled()
 
 		kickBtn.addEventListener('click', () => {
-			kickFromTeamLS(pokemon.name, backupTeam)
+			kickFromTeamLS(pokemon, backupTeam)
 			kick(card, pokemon)
 			teamStartScreen()
 			showOverlay('kick', capitalName, teamOverlay, teamOverlayText)
