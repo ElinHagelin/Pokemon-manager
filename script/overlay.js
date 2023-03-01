@@ -4,6 +4,8 @@ const teamName = document.querySelector('.team__heading__text')
 const pokemonHeading = document.querySelector('.info__heading')
 
 
+// Skapar en overlay med en input
+
 function createOverlay(container, headingText, pokemon) {
 	const overlay = {
 		background: document.createElement('div'),
@@ -34,8 +36,9 @@ function createOverlay(container, headingText, pokemon) {
 			overlay.background.remove()
 		}
 		else if (event.key == 'Enter' && overlay.input.value != '' && headingText == 'Name your pokémon') {
-			const pokemonHeading = document.querySelector('.info__heading')
-			storeNick(' ' + overlay.input.value, pokemonHeading, pokemon)
+			// const pokemonHeading = document.querySelector('.info__heading')
+			storeNick(' ' + overlay.input.value, headingText, pokemon)
+			overlay.input.value = ''
 			overlay.background.remove()
 		}
 		else if (event.key == 'Enter' && overlay.input.value == '') {
@@ -50,8 +53,6 @@ function createOverlay(container, headingText, pokemon) {
 	overlay.background.addEventListener('click', () => {
 		overlay.background.remove()
 	})
-
-	// return overlay
 }
 
 export { createOverlay }

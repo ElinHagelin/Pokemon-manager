@@ -52,8 +52,8 @@ async function createCard(container, pokemon) {
 	const cardInfo = createElement('section', 'card__info')
 	const headingContainer = createElement('div', 'info__heading__container')
 	const heading = createElement('h5', 'info__heading')
-	const expandBtn = createElement('button', 'info__expand')
-	const expandIcon = createElement('img', 'expand__icon')
+	// const expandBtn = createElement('button', 'info__expand')
+	// const expandIcon = createElement('img', 'expand__icon')
 	const pokemonInfo = createElement('p', 'info__text')
 	const buttonContainer = createElement('div', 'info__button__container')
 	const promoteBtn = createElement('button', 'info__button--promote')
@@ -63,8 +63,8 @@ async function createCard(container, pokemon) {
 	card.append(cardInfo)
 	cardInfo.append(headingContainer)
 	headingContainer.append(heading)
-	headingContainer.append(expandBtn)
-	expandBtn.append(expandIcon)
+	// headingContainer.append(expandBtn)
+	// expandBtn.append(expandIcon)
 	cardInfo.append(pokemonInfo)
 
 
@@ -72,7 +72,7 @@ async function createCard(container, pokemon) {
 	let capitalName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)
 
 	pokemonImg.src = await getImage(pokemon.url)
-	expandIcon.src = '../img/down (1).png'
+	// expandIcon.src = '../img/down (1).png'
 	heading.innerText = capitalName
 	heading.classList.add('info__heading')
 	pokemonInfo.classList.add('invisible')
@@ -102,8 +102,8 @@ async function createCard(container, pokemon) {
 		const editNick = createElement('img', 'edit-nick')
 		editNick.src = ('../img/🦆 icon _pencil_.png')
 
-		headingContainer.insertBefore(editNick, expandBtn)
-		// headingContainer.append(editNick)
+		// headingContainer.insertBefore(editNick, expandBtn)
+		headingContainer.append(editNick)
 
 
 		demoteBtn.addEventListener('click', () => {
@@ -135,14 +135,13 @@ async function createCard(container, pokemon) {
 		const kickBtn = createBtn(buttonContainer, 'info__button--kick', 'Kick')
 		const editNick = createElement('img', 'edit-nick')
 		editNick.src = '../img/🦆 icon _pencil_.png'
-		headingContainer.insertBefore(editNick, expandBtn)
-		// headingContainer.append(editNick)
+		// headingContainer.insertBefore(editNick, expandBtn)
+		headingContainer.append(editNick)
 
 
 
 		promoteBtn.addEventListener('click', event => {
 
-			// const allPromoteBtns = document.querySelectorAll('.info__button--promote')
 			console.log(primaryTeam.childNodes);
 			if (primaryTeam.childNodes.length < 3) {
 				console.log('prevent promote');

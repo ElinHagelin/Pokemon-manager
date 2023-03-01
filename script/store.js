@@ -82,7 +82,7 @@ function storeNick(nick, cardHeading, pokemon) {
 
 	console.log('inuti storeNick' + pokemon);
 	pokemon.name = pokemon.name + nick
-	console.log('Nytt namn' + pokemon.name);
+	console.log('Nytt namn: ' + pokemon.name);
 	cardHeading.innerText = pokemon.name
 
 
