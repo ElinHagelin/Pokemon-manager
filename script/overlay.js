@@ -1,10 +1,10 @@
-import { storeTeam } from "./store.js";
+import { storeTeam, storeNick } from "./store.js";
 
 const teamName = document.querySelector('.team__heading__text')
 const pokemonHeading = document.querySelector('.info__heading')
 
 
-function createOverlay(html, headingText) {
+function createOverlay(container, headingText, pokemon) {
 	const overlay = {
 		background: document.createElement('div'),
 		dialogue: document.createElement('div'),
@@ -23,17 +23,19 @@ function createOverlay(html, headingText) {
 	overlay.dialogue.append(overlay.heading)
 	overlay.dialogue.append(overlay.input)
 	overlay.background.append(overlay.dialogue)
-	html.append(overlay.background)
+	container.append(overlay.background)
 
 
 	overlay.input.addEventListener('keydown', event => {
 		if (event.key == 'Enter' && overlay.input.value != '' && headingText == 'Name your team') {
 			storeTeam(overlay.input.value)
 			teamName.innerText = `Team ${overlay.input.value}`
+			overlay.input.value = ''
 			overlay.background.remove()
 		}
 		else if (event.key == 'Enter' && overlay.input.value != '' && headingText == 'Name your pokémon') {
-			storeNick(' ' + overlay.input.value, pokemonHeading)
+			const pokemonHeading = document.querySelector('.info__heading')
+			storeNick(' ' + overlay.input.value, pokemonHeading, pokemon)
 			overlay.background.remove()
 		}
 		else if (event.key == 'Enter' && overlay.input.value == '') {

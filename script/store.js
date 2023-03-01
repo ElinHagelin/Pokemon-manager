@@ -14,10 +14,13 @@ const team = {
 	backupChampions: []
 }
 
+
 // const teams = {
 // 	teams: [{name: '', champions: {primary:[], backup: []}}]
 // }
 
+
+// hämtar laget ur LS om det finns något att hämta
 
 function teamChampions() {
 	let teamFromLS = localStorage.getItem(LS_KEY)
@@ -26,10 +29,11 @@ function teamChampions() {
 	} else if (teamFromLS == null) {
 		teamFromLS = team
 	}
-	// console.log('inuti teamChampions: ' + JSON.stringify(teamFromLS));
 	return teamFromLS
 }
 
+
+// Skapar element och lägger in innehåll i lag-vyn
 
 function ShowTeamName(teamNameHeading, selectOption) {
 	const team = teamChampions()
@@ -54,45 +58,42 @@ function ShowTeamName(teamNameHeading, selectOption) {
 }
 
 
+// sparar lagnamnet när man ändrat
+
 function storeTeam(teamName) {
-	console.log('kör storeTeam 1');
 	let teamFromLS = localStorage.getItem(LS_KEY)
-	console.log('efter hämtning ' + teamFromLS);
-	if (teamFromLS //&& teamFromLS.name
-	) {
+	if (teamFromLS) {
 		teamFromLS = JSON.parse(teamFromLS)
 	} else {
 		teamFromLS = team
-		console.log('skapar nytt lag' + teamFromLS);
+		// skapar nytt lag om det inte finns något i LS
 	}
 	teamFromLS.name = teamName
-	console.log('kör storeTeam 2' + teamFromLS.name);
 
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
-function storeNick(pokemonName, nick, cardHeading) {
+// sparar namnen du ger pokemons i ditt lag 
+
+function storeNick(nick, cardHeading, pokemon) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
 	teamFromLS = JSON.parse(teamFromLS)
 
-	let newName = pokemonName + nick
-	teamFromLS.name = newName
-	cardHeading.innerText = newName
+	console.log('inuti storeNick' + pokemon);
+	pokemon.name = pokemon.name + nick
+	console.log('Nytt namn' + pokemon.name);
+	cardHeading.innerText = pokemon.name
+
 
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
+// Lägger till pokemon till ditt lag
 
 function addToTeamLS(pokemon) {
 	let teamFromLS = teamChampions()
-
-	// if (!teamFromLS && !teamFromLS.primaryChampions) {
-	// 	teamFromLS = team
-	// } else {
-	// 	teamFromLS = JSON.parse(teamFromLS)
-	// }
 
 	if (teamFromLS.primaryChampions.length < 3) {
 		teamFromLS.primaryChampions.push(pokemon)
@@ -107,6 +108,8 @@ function addToTeamLS(pokemon) {
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
+
+// Kickar pokemons från ditt lag
 
 function kickFromTeamLS(pokemonName, container) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
@@ -135,6 +138,7 @@ function kickFromTeamLS(pokemonName, container) {
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
+// Degraderar pokemon till backup
 
 function demoteInTeamLS(pokemonName) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
@@ -153,6 +157,7 @@ function demoteInTeamLS(pokemonName) {
 	localStorage.setItem(LS_KEY, teamToSave)
 }
 
+// Uppgraderar opokemon till primary
 
 function promoteInTeamLS(pokemonName) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
@@ -174,4 +179,4 @@ function promoteInTeamLS(pokemonName) {
 }
 
 
-export { addToTeamLS, storeTeam, kickFromTeamLS, ShowTeamName, teamChampions, demoteInTeamLS, promoteInTeamLS }
+export { addToTeamLS, storeTeam, kickFromTeamLS, ShowTeamName, teamChampions, demoteInTeamLS, promoteInTeamLS, storeNick }

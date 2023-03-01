@@ -17,7 +17,7 @@ const teamOverlay = document.querySelector('.team__overlay')
 const teamOverlayText = document.querySelector('.team__overlay__para')
 
 
-
+// Startskärm på söksidan innan man sökt på något
 
 function searchStartScreen() {
 	if (mainContentSearch.childNodes.length == 2) {
@@ -26,6 +26,8 @@ function searchStartScreen() {
 		searchStart.classList.remove('invisible')
 	}
 }
+
+// Startskärm på lagsidan innan man lagt till någon pokemon
 
 function teamStartScreen() {
 	console.log('hallå');
@@ -40,6 +42,8 @@ function teamStartScreen() {
 	// 	backupHeading.classList.add('invisible')
 	// }
 }
+
+// Skapar pokemon-kort
 
 async function createCard(container, pokemon) {
 
@@ -120,7 +124,7 @@ async function createCard(container, pokemon) {
 			fadeOverlay(teamOverlay)
 		})
 		editNick.addEventListener('click', () => {
-			createOverlay(html, 'Name your pokémon')
+			createOverlay(html, 'Name your pokémon', pokemon)
 		})
 
 	} else if (container == backupTeam) {
@@ -162,12 +166,12 @@ async function createCard(container, pokemon) {
 			fadeOverlay(teamOverlay)
 		})
 		editNick.addEventListener('click', () => {
-			createOverlay(html, 'Name your pokémon')
+			createOverlay(html, 'Name your pokémon', pokemon)
 		})
 	}
 }
 
-
+// Skapar knapp
 
 function createBtn(container, className, text) {
 	const btn = createElement('button', ('info__button'))
@@ -177,6 +181,7 @@ function createBtn(container, className, text) {
 	return btn
 }
 
+// Skapar element
 
 function createElement(element, className) {
 	const x = document.createElement(element)
@@ -184,6 +189,7 @@ function createElement(element, className) {
 	return x
 }
 
+// smart sökfunktion
 
 function search(input, list) {
 	const searchList = list.filter(pokemon => {
@@ -192,22 +198,26 @@ function search(input, list) {
 	return searchList
 }
 
+// Rensar element
 
 function clearContent(container) {
 	container.innerHTML = ''
 }
 
+// Tar bort elementet(cardet) som innehåller den pokemon man vill kicka
 
 function kick(element, pokemon) {
 	element.remove(pokemon)
 }
 
+// Tar bort cardet från primary och lägger till det cardet i backup istället.
 
 function demote(card, toElement, pokemon) {
 	card.remove(pokemon)
 	createCard(toElement, pokemon)
 }
 
+// Tar bort cardet från backup och lägger till det cardet i primary istället.
 
 function promote(card, toElement, pokemon) {
 
@@ -215,18 +225,7 @@ function promote(card, toElement, pokemon) {
 	createCard(toElement, pokemon)
 }
 
-// function toggleDisabled(button) {
-
-// 	if (primaryTeam.childNodes.length == 3 && backupTeam.childNodes > 0) {
-// 		console.log('inside toggleDisabled, primary full');
-// 		button.preventDefault()
-// 		button.classList.add('disabled')
-// 	}
-// 	else if (primaryTeam.childNodes.length < 3 && backupTeam.childNodes.length > 0) {
-// 		console.log('inside toggleDisabled, primary not full');
-// 		button.classList.remove('disabled')
-// 	}
-// }
+// Ska disable:a promote-knappen när primary är full
 
 function toggleDisabled() {
 	const allPromoteBtns = document.querySelectorAll('.info__button--promote')
@@ -249,6 +248,8 @@ function toggleDisabled() {
 	}
 }
 
+// Overlay när man trycker på add, demote, promote och kick som beskriver vad som hände när man klickade
+
 function showOverlay(action, pokemonName, overlay, overlayText) {
 	if (action == 'add') {
 		overlayText.innerText = 'Added ' + pokemonName + ' to team';
@@ -262,6 +263,8 @@ function showOverlay(action, pokemonName, overlay, overlayText) {
 	}
 	overlay.classList.remove('fade-out')
 }
+
+// Fade:ar ut overlay:en efter 2 sekunder
 
 function fadeOverlay(overlay) {
 	setTimeout(() => {

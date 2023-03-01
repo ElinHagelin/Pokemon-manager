@@ -8,3 +8,5 @@
 - team-namnet har select-val så att man kan ha flera lag inlagda.
 
 - dropdown-ul-lista istället för select-element.
+
+- Kolla på kickFromLS-funktionen. den kickar alla pokemon med samma namn!!

@@ -23,7 +23,7 @@ const promoteBtn = document.querySelector('.info__button--promote')
 const editNick = document.querySelector('.edit-nick')
 
 
-
+// Hämtar hela listan med pokemon från API
 
 async function fullPokemonList() {
 	const data = await getPokemonList()
@@ -37,12 +37,7 @@ searchStartScreen()
 
 
 
-
-console.log(primaryTeam.childNodes);
-console.log(backupTeam.childNodes);
-
-// promoteBtn.disabled = true
-
+// Lyssnar på enter på sök-input
 
 searchInput.addEventListener('keydown', async (event) => {
 	const data = await fullPokemonList()
@@ -54,9 +49,7 @@ searchInput.addEventListener('keydown', async (event) => {
 		searchList.forEach(async (pokemon) => {
 			createCard(mainContent, pokemon)
 		})
-		// searchList.forEach(pokemon =>
-		// 	console.log(pokemon)
-		// );
+
 		searchInput.value = ''
 	}
 	else if (event.key == 'Enter' && searchString == '') {
@@ -64,14 +57,14 @@ searchInput.addEventListener('keydown', async (event) => {
 		data.results.forEach(async (pokemon) => {
 			createCard(mainContent, pokemon)
 		})
-		// data.results.forEach(pokemon =>
-		// 	console.log(pokemon)
-		// );
+
 		searchInput.value = ''
 	}
 })
 
-toggleDisabled()
+// toggleDisabled()
+
+// Lyssnar på klick på teamButton. Gör sökvyn osynlig och teamvyn synlig.
 
 teamButton.addEventListener('click', () => {
 	searchView.classList.add('invisible')
@@ -85,6 +78,7 @@ teamButton.addEventListener('click', () => {
 	toggleDisabled()
 })
 
+// Lyssnar på klick på searchButton. Gör teamvyn osynlig och sökvyn synlig.
 
 searchButton.addEventListener('click', () => {
 	searchView.classList.remove('invisible')
@@ -93,12 +87,10 @@ searchButton.addEventListener('click', () => {
 	searchButton.classList.add('selected')
 })
 
+// Öppnar overlay för att byta nman på laget
 
 editIcon.addEventListener('click', () => {
 	createOverlay(html, 'Name your team')
 })
 
-// editNick.addEventListener('click', () => {
-// 	createOverlay(html, 'Name your pokémon')
-// })
 
