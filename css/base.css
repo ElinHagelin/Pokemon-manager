@@ -20,12 +20,13 @@ html {
 body {
 	text-align: center;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	position: relative;
 }
 
 .header {
 	background: linear-gradient(to bottom, red 10%, rgb(255, 72, 72) 50%, rgb(255, 141, 141) 100%);
+	/* max-height: 20vh; */
 }
 
 .main {
@@ -42,7 +43,7 @@ body {
 
 .main__heading {
 	font-family: 'PokemonFont', Fallback, sans-serif;
-	font-size: 1.7em;
+	font-size: 1.4em;
 	letter-spacing: 5px;
 	-webkit-text-stroke: 2px #3466AF;
 	color: #FFCB05;
@@ -51,6 +52,7 @@ body {
 
 .main__logo {
 	max-width: 100%;
+	max-height: 20vh;
 	object-fit: cover;
 }
 
@@ -65,7 +67,7 @@ body {
 	background-color: #3466AF;
 	border: none;
 	color: white;
-	padding: 0.8em 0;
+	padding: 0.5em 0;
 	font-size: 1em;
 	cursor: pointer;
 }
@@ -81,7 +83,7 @@ body {
 
 .footer {
 	text-align: center;
-	padding-top: 2em;
+	padding-top: 1em;
 }
 
 .invisible {
@@ -90,7 +92,7 @@ body {
 
 @media screen and (min-width: 500px) {
 	.main__heading {
-		font-size: 2em;
+		font-size: 1.5em;
 	}
 
 	.main__logo {
@@ -101,7 +103,7 @@ body {
 
 @media screen and (min-width: 650px) {
 	.main__heading {
-		font-size: 2.5em;
+		font-size: 1.7em;
 	}
 }
 

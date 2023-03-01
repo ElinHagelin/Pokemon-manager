@@ -26,7 +26,6 @@ function createOverlay(html) {
 
 	overlay.input.addEventListener('keydown', event => {
 		if (event.key == 'Enter' && overlay.input.value != '') {
-			console.log('you clicked enter');
 			storeTeam(overlay.input.value)
 			teamName.innerText = `Team ${overlay.input.value}`
 			overlay.background.remove()

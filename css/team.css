@@ -1,8 +1,12 @@
 .team__startscreen {
 	background-color: rgba(216, 216, 216, 0.7);
-	padding: 2em 0.5em;
-	margin: 2em;
+	padding: 1em 0.5em;
+	margin: 1em;
 	border-radius: 1em;
+}
+
+.main__team {
+	max-height: 100%;
 }
 
 .team__overlay {

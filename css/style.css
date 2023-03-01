@@ -1,6 +1,6 @@
 .search__label {
 	font-size: 1.1em;
-	margin-top: 1em;
+	margin-top: -0.5em;
 }
 
 #search-input {
@@ -18,20 +18,24 @@
 	flex-direction: column;
 }
 
+.main__content--search {
+	max-height: 35vh;
+}
+
 .search__startscreen {
 	background-color: rgba(216, 216, 216, 0.7);
 	padding: 2em 1em;
-	margin: 2em;
+	margin: 1em;
 	border-radius: 1em;
 }
 
 .start__heading {
-	font-size: 1.4em;
+	font-size: 1.2em;
 	margin-bottom: 1em;
 }
 
 .start__para {
-	font-size: 1.1em;
+	font-size: 1em;
 }
 
 .card {

@@ -25,14 +25,17 @@ function searchStartScreen() {
 }
 
 function teamStartScreen() {
-	if (primaryTeam.childNodes.length > 3) {
+	console.log('hallå');
+	let primaryTeamChildren = primaryTeam.childNodes
+	if (primaryTeamChildren.length > 3) {
+		console.log('hallå 2');
 		teamStart.classList.add('invisible')
 		backupHeading.classList.remove('invisible')
 
-	} else if (primaryTeam.childNodes.length <= 3 && backupTeam.childNodes.length <= 3) {
-		teamStart.classList.remove('invisible')
-		backupHeading.classList.add('invisible')
-	}
+	}// else if (primaryTeam.childNodes.length <= 3 && backupTeam.childNodes.length <= 3) {
+	// 	teamStart.classList.remove('invisible')
+	// 	backupHeading.classList.add('invisible')
+	// }
 }
 
 async function createCard(container, pokemon) {
@@ -76,7 +79,11 @@ async function createCard(container, pokemon) {
 		addBtn.addEventListener('click', () => {
 			console.log('Du klickade på: ' + pokemon.name);
 			addToTeamLS(pokemon);
-			teamStartScreen()
+
+			teamStart.classList.add('invisible')
+			backupHeading.classList.remove('invisible')
+
+			// teamStartScreen()
 			showOverlay('add', capitalName, addOverlay, addOverlayText)
 			fadeOverlay(addOverlay)
 		})
