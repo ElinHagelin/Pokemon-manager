@@ -6,7 +6,7 @@ const pokemonHeading = document.querySelector('.info__heading')
 
 // Skapar en overlay med en input
 
-function createOverlay(container, headingText, pokemon) {
+function createOverlay(container, headingText, pokemon, heading) {
 	const overlay = {
 		background: document.createElement('div'),
 		dialogue: document.createElement('div'),
@@ -36,8 +36,7 @@ function createOverlay(container, headingText, pokemon) {
 			overlay.background.remove()
 		}
 		else if (event.key == 'Enter' && overlay.input.value != '' && headingText == 'Name your pokémon') {
-			// const pokemonHeading = document.querySelector('.info__heading')
-			storeNick(' ' + overlay.input.value, headingText, pokemon)
+			storeNick(' ' + overlay.input.value, heading, pokemon)
 			overlay.input.value = ''
 			overlay.background.remove()
 		}

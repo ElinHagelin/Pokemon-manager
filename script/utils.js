@@ -124,7 +124,7 @@ async function createCard(container, pokemon) {
 			fadeOverlay(teamOverlay)
 		})
 		editNick.addEventListener('click', () => {
-			createOverlay(html, 'Name your pokémon', pokemon)
+			createOverlay(html, 'Name your pokémon', pokemon, heading)
 		})
 
 	} else if (container == backupTeam) {

@@ -85,6 +85,7 @@ function storeNick(nick, cardHeading, pokemon) {
 	console.log('Nytt namn: ' + pokemon.name);
 	cardHeading.innerText = pokemon.name
 
+	pokemon.nickname = nick
 
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
