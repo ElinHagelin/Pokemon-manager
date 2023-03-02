@@ -68,6 +68,16 @@
 	font-size: 1.2em;
 }
 
+.ability-heading {
+	font-weight: bold;
+	margin: 0.5em 0;
+	text-align: start;
+}
+
+.type-heading {
+	font-weight: bold;
+}
+
 .info__button--promote,
 .info__button--demote,
 .info__button--kick {
@@ -119,12 +129,6 @@
 	.heading__icon {
 		margin: 0.1em 0.5em;
 		max-height: 20px;
-	}
-
-	#team-select {
-		grid-column: 1;
-		grid-row: 1;
-		justify-self: end;
 	}
 }
 

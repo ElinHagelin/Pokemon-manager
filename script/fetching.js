@@ -14,5 +14,17 @@ async function getImage(url) {
 	return data.sprites.front_default
 }
 
+async function getAbilities(url) {
+	const response = await fetch(url)
+	let data = await response.json()
+	return data
+}
 
-export { getImage, getPokemonList }
+// async function getType(url) {
+// 	const response = await fetch(url)
+// 	let data = await response.json()
+// 	return data.types
+// }
+
+
+export { getImage, getPokemonList, getAbilities }

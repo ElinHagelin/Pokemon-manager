@@ -44,8 +44,8 @@ function createOverlay(container, headingText, pokemon, teamContainer, pokemonHe
 				pokemonHeading.innerText = capitalName
 
 			} else {
-				storeNick(' ' + newName, pokemonHeading, pokemon, backupTeam)
 				capitalName = capitalName + ' ' + newName
+				storeNick(capitalName, pokemonHeading, pokemon, backupTeam)
 				pokemonHeading.innerText = capitalName
 
 			}

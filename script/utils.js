@@ -1,6 +1,6 @@
-import { getImage } from "./fetching.js";
+import { getImage, getAbilities } from "./fetching.js";
 import { createOverlay } from "./overlay.js";
-import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS } from "./store.js";
+import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS, getTeamFromLS } from "./store.js";
 
 const html = document.querySelector('html')
 const mainContent = document.querySelector('.main__content')
@@ -34,24 +34,13 @@ function searchStartScreen() {
 // Startskärm på lagsidan innan man lagt till någon pokemon
 
 function teamStartScreen() {
-	const counts = [];
-	primaryTeam.childNodes.forEach(elem => {
-		if (elem.nodeName == 'DIV') {
-			counts.push(elem)
-		}
-	});
-	backupTeam.childNodes.forEach(elem => {
-		if (elem.nodeName == 'DIV') {
-			counts.push(elem)
-		}
-	});
+	const team = getTeamFromLS()
 
-	if (counts) {
-		console.log('hallå 2');
+	if (team.primaryChampions.length > 0) {
 		teamStart.classList.add('invisible')
 		backupHeading.classList.remove('invisible')
 	}
-	else {
+	else if (team.primaryChampions.length == 0 && team.backupChampions.length == 0) {
 		teamStart.classList.remove('invisible')
 		backupHeading.classList.add('invisible')
 	}
@@ -66,9 +55,7 @@ async function createCard(container, pokemon) {
 	const cardInfo = createElement('section', 'card__info')
 	const headingContainer = createElement('div', 'info__heading__container')
 	const heading = createElement('h5', 'info__heading')
-	// const expandBtn = createElement('button', 'info__expand')
-	// const expandIcon = createElement('img', 'expand__icon')
-	const pokemonInfo = createElement('p', 'info__text')
+	// const pokemonInfo = createElement('p', 'info__text')
 	const buttonContainer = createElement('div', 'info__button__container')
 	const promoteBtn = createElement('button', 'info__button--promote')
 
@@ -77,21 +64,19 @@ async function createCard(container, pokemon) {
 	card.append(cardInfo)
 	cardInfo.append(headingContainer)
 	headingContainer.append(heading)
-	// headingContainer.append(expandBtn)
-	// expandBtn.append(expandIcon)
-	cardInfo.append(pokemonInfo)
+	// cardInfo.append(pokemonInfo)
 
 
-	// let pokemonName = pokemon.name
 	let capitalName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
 
 	pokemonImg.src = await getImage(pokemon.url)
-	// expandIcon.src = '../img/down (1).png'
 	heading.innerText = capitalName
 	heading.classList.add('info__heading')
-	pokemonInfo.classList.add('invisible')
-	pokemonInfo.innerText = 'information om pokemon'
+	// pokemonInfo.classList.add('invisible')
+	// pokemonInfo.innerText = 'information om pokemon'
 
+	const typeHeading = createElement('p', 'type-heading')
+	const abilityHeading = createElement('p', 'ability-heading')
 
 
 	if (container == mainContent) {
@@ -109,6 +94,14 @@ async function createCard(container, pokemon) {
 			fadeOverlay(addOverlay)
 		})
 	} else if (container == primaryTeam) {
+		const abilities = await getAbilities(pokemon.url)
+
+
+		showAbilities(abilities.types, typeHeading, 'type', 'Type: ')
+		cardInfo.append(typeHeading)
+		showAbilities(abilities.abilities, abilityHeading, 'ability', 'Abilities: ')
+		cardInfo.append(abilityHeading)
+
 		cardInfo.append(buttonContainer)
 		const demoteBtn = createBtn(buttonContainer, 'info__button--demote', 'Demote')
 		const kickBtn = createBtn(buttonContainer, 'info__button--kick', 'Kick')
@@ -116,8 +109,9 @@ async function createCard(container, pokemon) {
 		const editNick = createElement('img', 'edit-nick')
 		editNick.src = ('../img/🦆 icon _pencil_.png')
 
-		// headingContainer.insertBefore(editNick, expandBtn)
 		headingContainer.append(editNick)
+
+
 
 
 		demoteBtn.addEventListener('click', () => {
@@ -134,10 +128,6 @@ async function createCard(container, pokemon) {
 			kick(card, pokemon)
 			toggleDisabled()
 			teamStartScreen()
-			if (!primaryTeam) {
-				primaryTeam = [];
-			}
-			// console.log(primaryTeam.findIndex(x => x.name = pokemon.name));
 			showOverlay('kick', capitalName, teamOverlay, teamOverlayText)
 			fadeOverlay(teamOverlay)
 		})
@@ -146,6 +136,15 @@ async function createCard(container, pokemon) {
 		})
 
 	} else if (container == backupTeam) {
+		const abilities = await getAbilities(pokemon.url)
+
+		// showAbilities(abilities, cardInfo)
+		showAbilities(abilities.types, typeHeading, 'type', 'Type: ')
+		cardInfo.append(typeHeading)
+		showAbilities(abilities.abilities, abilityHeading, 'ability', 'Abilities: ')
+		cardInfo.append(abilityHeading)
+		// showAbilities(list, heading, bla, propertyDescription)
+
 		cardInfo.append(buttonContainer)
 		promoteBtn.classList.add('info__button')
 		buttonContainer.append(promoteBtn)
@@ -156,7 +155,7 @@ async function createCard(container, pokemon) {
 		headingContainer.append(editNick)
 
 
-		promoteBtn.addEventListener('click', event => {
+		promoteBtn.addEventListener('click', () => {
 
 			console.log('promote ' + pokemon.name);
 			promoteInTeamLS(pokemon)
@@ -212,6 +211,35 @@ function search(input, list) {
 
 function clearContent(container) {
 	container.innerHTML = ''
+}
+
+async function showAbilities(list, heading, bla, propertyDescription) {
+
+	// container.append(heading)
+	let property = ''
+
+
+	// const propertyHeading = createElement('p', 'ability-heading')
+	// container.append(abilityHeading)
+
+
+	list.forEach(elem => {
+		// const pokemonAbility = createElement('p', 'ability')
+		if (bla === 'type') {
+			console.log(elem.type.name);
+			property = property + ', ' + elem.type.name
+		}
+		else if (bla === 'ability') {
+			// console.log(elem.ability);
+			property = property + ', ' + elem.ability.name
+		}
+		// property = property + ', ' + elem.bla
+		// console.log(elem.ability.name);
+		// pokemonAbility.innerText = elem.ability.name
+		// container.append(pokemonAbility)
+	});
+
+	heading.innerText = propertyDescription + property
 }
 
 // Tar bort elementet(cardet) som innehåller den pokemon man vill kicka

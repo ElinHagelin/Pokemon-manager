@@ -1,12 +1,3 @@
 
 - drag and drop i main-laget (håller man den i backup-containern läggs den överst i backup)
 
-- Sätt att byta namn på pokemon i laget
-
-- promote disabled när laget är fullt
-
-- team-namnet har select-val så att man kan ha flera lag inlagda.
-
-- dropdown-ul-lista istället för select-element.
-
-- Kolla på kickFromLS-funktionen. den kickar alla pokemon med samma namn!!

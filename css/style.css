@@ -18,10 +18,6 @@
 	flex-direction: column;
 }
 
-.main__content--search {
-	max-height: 35vh;
-}
-
 .search__startscreen {
 	background-color: rgba(216, 216, 216, 0.7);
 	padding: 2em 1em;
@@ -43,7 +39,7 @@
 	display: flex;
 	justify-content: space-around;
 	background-color: rgb(192, 191, 191);
-	padding: 0.5em;
+	padding: 1em;
 	border-radius: 1em;
 	margin: 1em 0;
 }

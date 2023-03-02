@@ -1,6 +1,6 @@
 .overlay__background {
 	background-color: rgba(0, 0, 0, 0.3);
-	position: absolute;
+	position: fixed;
 	height: 100%;
 	width: 100%;
 	top: 0px;
@@ -8,6 +8,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
+
 }
 
 .overlay__dialogue {
