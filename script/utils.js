@@ -34,17 +34,27 @@ function searchStartScreen() {
 // Startskärm på lagsidan innan man lagt till någon pokemon
 
 function teamStartScreen() {
-	console.log('hallå');
-	let primaryTeamChildren = primaryTeam.childNodes
-	if (primaryTeamChildren.length > 3) {
+	const counts = [];
+	primaryTeam.childNodes.forEach(elem => {
+		if (elem.nodeName == 'DIV') {
+			counts.push(elem)
+		}
+	});
+	backupTeam.childNodes.forEach(elem => {
+		if (elem.nodeName == 'DIV') {
+			counts.push(elem)
+		}
+	});
+
+	if (counts) {
 		console.log('hallå 2');
 		teamStart.classList.add('invisible')
 		backupHeading.classList.remove('invisible')
-
-	}// else if (primaryTeam.childNodes.length <= 3 && backupTeam.childNodes.length <= 3) {
-	// 	teamStart.classList.remove('invisible')
-	// 	backupHeading.classList.add('invisible')
-	// }
+	}
+	else {
+		teamStart.classList.remove('invisible')
+		backupHeading.classList.add('invisible')
+	}
 }
 
 // Skapar pokemon-kort
@@ -230,7 +240,6 @@ function promote(card, toElement, pokemon) {
 function toggleDisabled() {
 	const allPromoteBtns = document.querySelectorAll('.info__button--promote')
 
-	console.log(primaryTeam.childNodes);
 	const counts = [];
 	primaryTeam.childNodes.forEach(elem => {
 		if (elem.nodeName == 'DIV') {
@@ -241,7 +250,6 @@ function toggleDisabled() {
 	if (counts.length >= 3 && backupTeam.childNodes.length > 3) {
 
 		for (let i = 0; i < allPromoteBtns.length; i++) {
-			console.log('disabling buttons');
 			allPromoteBtns[i].disabled = true;
 			allPromoteBtns[i].classList.add('disabled')
 		}
@@ -249,7 +257,6 @@ function toggleDisabled() {
 	else if (counts.length < 3 && backupTeam.childNodes.length > 3) {
 
 		for (let i = 0; i < allPromoteBtns.length; i++) {
-			console.log('enabling buttons');
 			allPromoteBtns[i].disabled = false;
 			allPromoteBtns[i].classList.remove('disabled')
 		}

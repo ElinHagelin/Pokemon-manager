@@ -6,22 +6,13 @@ const backupTeam = document.querySelector('.team__backup')
 
 
 const LS_KEY = 'Pokemon-manager'
-const primaryChampions = []
-const backupChampions = []
+// const primaryChampions = []
+// const backupChampions = []
 const team = {
 	name: '',
 	primaryChampions: [],
 	backupChampions: []
 }
-
-const primaryTeamList = []
-const backupTeamList = []
-
-
-// const teams = {
-// 	teams: [{name: '', champions: {primary:[], backup: []}}]
-// }
-
 
 // hämtar laget ur LS om det finns något att hämta
 
@@ -43,7 +34,6 @@ function ShowTeam(teamNameHeading, selectOption) {
 
 	if (team.name) {
 		teamNameHeading.innerText = `Team ${team.name}`
-		selectOption.innerText = `Team ${team.name}`
 	}
 	team.primaryChampions.forEach(pokemon => {
 		createCard(primaryTeam, pokemon)
@@ -51,13 +41,6 @@ function ShowTeam(teamNameHeading, selectOption) {
 	team.backupChampions.forEach(pokemon => {
 		createCard(backupTeam, pokemon)
 	})
-
-	// if (teamFromLS.primaryChampions.length < 3) {
-	// 	promoteBtn.disabled = false
-	// }
-	// else if (teamFromLS.primaryChampions.length >= 3) {
-	// 	promoteBtn.disabled = true
-	// }
 }
 
 
@@ -107,13 +90,11 @@ function addToTeamLS(pokemon) {
 	if (teamFromLS.primaryChampions.length < 3) {
 		console.log('added ' + pokemon.name + ' to primary');
 		teamFromLS.primaryChampions.push(pokemon)
-		// primaryTeamList.push(pokemon.name)
 
 	}
 	else if (teamFromLS.primaryChampions.length >= 3) {
 		console.log('added ' + pokemon.name + ' to backup');
 		teamFromLS.backupChampions.push(pokemon)
-		// backupTeamList.push(pokemon.name)
 	}
 
 	let teamToSave = JSON.stringify(teamFromLS)
@@ -162,7 +143,11 @@ function demoteInTeamLS(pokemon) {
 	// 	return pokemon.name !== pokemonName
 	// })
 
-	let pokemonIndex = teamFromLS.primaryChampions.findIndex(x => x.name = pokemon.name);
+	const pokemonToDemote = teamFromLS.primaryChampions.find(elem => elem.name == pokemon.name)
+
+	console.log('Demote: ' + pokemonToDemote.name + ' from LS');
+
+	let pokemonIndex = teamFromLS.primaryChampions.indexOf(pokemonToDemote);
 
 	teamFromLS.primaryChampions.splice(pokemonIndex, 1)
 	teamFromLS.backupChampions.push(pokemon)
