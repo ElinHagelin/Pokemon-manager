@@ -1,7 +1,7 @@
 import { getPokemonList } from "./fetching.js";
 import { createCard, search, clearContent, kick, toggleDisabled, searchStartScreen, teamStartScreen } from "./utils.js";
 import { createOverlay } from "./overlay.js"
-import { addToTeamLS, ShowTeam, teamChampions } from "./store.js";
+import { addToTeamLS, ShowTeam, getTeamFromLS } from "./store.js";
 
 
 const html = document.querySelector('html')
@@ -31,7 +31,7 @@ async function fullPokemonList() {
 }
 
 
-ShowTeam(teamName, team1)
+ShowTeam(teamName)
 teamStartScreen()
 searchStartScreen()
 

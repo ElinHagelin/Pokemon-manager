@@ -1,6 +1,6 @@
 import { getImage } from "./fetching.js";
 import { createOverlay } from "./overlay.js";
-import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS, teamChampions } from "./store.js";
+import { addToTeamLS, kickFromTeamLS, demoteInTeamLS, promoteInTeamLS } from "./store.js";
 
 const html = document.querySelector('html')
 const mainContent = document.querySelector('.main__content')
