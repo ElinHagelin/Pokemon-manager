@@ -1,12 +1,13 @@
 import { storeTeam, storeNick } from "./store.js";
 
 const teamName = document.querySelector('.team__heading__text')
-const pokemonHeading = document.querySelector('.info__heading')
-
+// const pokemonHeading = document.querySelector('.info__heading')
+const primaryTeam = document.querySelector('.team__primary')
+const backupTeam = document.querySelector('.team__backup')
 
 // Skapar en overlay med en input
 
-function createOverlay(container, headingText, pokemon, heading) {
+function createOverlay(container, headingText, pokemon, teamContainer, pokemonHeading, capitalName) {
 	const overlay = {
 		background: document.createElement('div'),
 		dialogue: document.createElement('div'),
@@ -29,18 +30,29 @@ function createOverlay(container, headingText, pokemon, heading) {
 
 
 	overlay.input.addEventListener('keydown', event => {
-		if (event.key == 'Enter' && overlay.input.value != '' && headingText == 'Name your team') {
-			storeTeam(overlay.input.value)
-			teamName.innerText = `Team ${overlay.input.value}`
-			overlay.input.value = ''
+		let newName = overlay.input.value
+		if (event.key == 'Enter' && newName != '' && headingText == 'Name your team') {
+			storeTeam(newName)
+			teamName.innerText = `Team ${newName}`
+			newName = ''
 			overlay.background.remove()
 		}
-		else if (event.key == 'Enter' && overlay.input.value != '' && headingText == 'Name your pokémon') {
-			storeNick(' ' + overlay.input.value, heading, pokemon)
-			overlay.input.value = ''
+		else if (event.key == 'Enter' && newName != '' && headingText == 'Name your pokémon') {
+			if (teamContainer == primaryTeam) {
+				storeNick(' ' + newName, pokemonHeading, pokemon, primaryTeam)
+				capitalName = capitalName + ' ' + newName
+				pokemonHeading.innerText = capitalName
+
+			} else {
+				storeNick(' ' + newName, pokemonHeading, pokemon, backupTeam)
+				capitalName = capitalName + ' ' + newName
+				pokemonHeading.innerText = capitalName
+
+			}
+			newName = ''
 			overlay.background.remove()
 		}
-		else if (event.key == 'Enter' && overlay.input.value == '') {
+		else if (event.key == 'Enter' && newName == '') {
 			overlay.background.remove()
 		}
 	})

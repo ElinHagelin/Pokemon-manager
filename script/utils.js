@@ -15,6 +15,7 @@ const addOverlay = document.querySelector('.add__overlay')
 const addOverlayText = document.querySelector('.add__overlay__para')
 const teamOverlay = document.querySelector('.team__overlay')
 const teamOverlayText = document.querySelector('.team__overlay__para')
+const pokemonHeading = document.querySelector('.info__heading')
 
 
 // const primaryTeamList = []
@@ -71,8 +72,8 @@ async function createCard(container, pokemon) {
 	cardInfo.append(pokemonInfo)
 
 
-	let pokemonName = pokemon.name
-	let capitalName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)
+	// let pokemonName = pokemon.name
+	let capitalName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
 
 	pokemonImg.src = await getImage(pokemon.url)
 	// expandIcon.src = '../img/down (1).png'
@@ -131,7 +132,7 @@ async function createCard(container, pokemon) {
 			fadeOverlay(teamOverlay)
 		})
 		editNick.addEventListener('click', () => {
-			createOverlay(html, 'Name your pokémon', pokemon, heading)
+			createOverlay(html, 'Name your pokémon', pokemon, primaryTeam, heading, capitalName)
 		})
 
 	} else if (container == backupTeam) {
@@ -142,38 +143,11 @@ async function createCard(container, pokemon) {
 		const kickBtn = createBtn(buttonContainer, 'info__button--kick', 'Kick')
 		const editNick = createElement('img', 'edit-nick')
 		editNick.src = '../img/🦆 icon _pencil_.png'
-		// headingContainer.insertBefore(editNick, expandBtn)
 		headingContainer.append(editNick)
-
-		// console.log(primaryTeam.childNodes);
-
-
-
-		// if (primaryTeam.childNodes.length >= 6) {
-		// 	console.log('prevent promote');
-		// 	// event.preventDefault()
-		// 	promoteBtn.disabled = true;
-		// 	promoteBtn.classList.add('disabled')
-		// }
-		// else {
-		// 	promoteBtn.disabled = false;
-		// 	promoteBtn.classList.remove('disabled')
-		// }
 
 
 		promoteBtn.addEventListener('click', event => {
 
-			// console.log(primaryTeam.childNodes);
-			// if (primaryTeam.childNodes.length >= 3) {
-			// 	console.log('prevent promote');
-			// 	// event.preventDefault()
-			// 	promoteBtn.disabled = true;
-			// 	promoteBtn.classList.add('disabled')
-			// }
-			// else {
-			// 	promoteBtn.disabled = false;
-			// 	promoteBtn.classList.remove('disabled')
-			// }
 			console.log('promote ' + pokemon.name);
 			promoteInTeamLS(pokemon)
 			promote(card, primaryTeam, pokemon)
@@ -192,7 +166,7 @@ async function createCard(container, pokemon) {
 			fadeOverlay(teamOverlay)
 		})
 		editNick.addEventListener('click', () => {
-			createOverlay(html, 'Name your pokémon', pokemon)
+			createOverlay(html, 'Name your pokémon', pokemon, backupTeam, heading, capitalName)
 		})
 	}
 }
@@ -263,7 +237,6 @@ function toggleDisabled() {
 			counts.push(elem)
 		}
 	});
-	console.log(counts)
 
 	if (counts.length >= 3 && backupTeam.childNodes.length > 3) {
 

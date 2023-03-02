@@ -79,16 +79,21 @@ function storeTeam(teamName) {
 
 // sparar namnen du ger pokemons i ditt lag 
 
-function storeNick(nick, cardHeading, pokemon) {
+function storeNick(nick, cardHeading, pokemon, container) {
 	let teamFromLS = localStorage.getItem(LS_KEY)
 	teamFromLS = JSON.parse(teamFromLS)
 
-	console.log('inuti storeNick' + pokemon);
-	pokemon.name = pokemon.name + nick
-	console.log('Nytt namn: ' + pokemon.name);
-	cardHeading.innerText = pokemon.name
+	if (container == primaryTeam) {
+		const pokemonToRename = primaryChampions.find(elem => elem.name == pokemon.name)
+		console.log(pokemonToRename);
+	}
 
-	pokemon.nickname = nick
+	// console.log('inuti storeNick' + pokemon);
+	// pokemon.name = pokemon.name + nick
+	// console.log('Nytt namn: ' + pokemon.name);
+	// cardHeading.innerText = pokemon.name
+
+	// pokemon.nickname = nick
 
 	let teamToSave = JSON.stringify(teamFromLS)
 	localStorage.setItem(LS_KEY, teamToSave)
