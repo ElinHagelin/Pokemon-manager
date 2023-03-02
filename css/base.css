@@ -14,24 +14,21 @@ html {
 	justify-content: center;
 	align-items: center;
 	background-color: rgb(154, 154, 154);
-	max-height: 100vh;
 }
 
 body {
 	text-align: center;
 	width: 100%;
-	height: 100%;
 	position: relative;
 }
 
 .header {
 	background: linear-gradient(to bottom, red 10%, rgb(255, 72, 72) 50%, rgb(255, 141, 141) 100%);
-	/* max-height: 20vh; */
 }
 
 .main {
 	background: linear-gradient(to bottom, rgb(255, 154, 154) 5%, white 100%);
-	height: 50vh;
+	max-height: fit-content;
 	overflow-y: auto
 }
 

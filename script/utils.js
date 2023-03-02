@@ -145,15 +145,35 @@ async function createCard(container, pokemon) {
 		// headingContainer.insertBefore(editNick, expandBtn)
 		headingContainer.append(editNick)
 
+		// console.log(primaryTeam.childNodes);
+
+
+
+		// if (primaryTeam.childNodes.length >= 6) {
+		// 	console.log('prevent promote');
+		// 	// event.preventDefault()
+		// 	promoteBtn.disabled = true;
+		// 	promoteBtn.classList.add('disabled')
+		// }
+		// else {
+		// 	promoteBtn.disabled = false;
+		// 	promoteBtn.classList.remove('disabled')
+		// }
 
 
 		promoteBtn.addEventListener('click', event => {
 
-			console.log(primaryTeam.childNodes);
-			if (primaryTeam.childNodes.length >= 3) {
-				console.log('prevent promote');
-				event.preventDefault()
-			}
+			// console.log(primaryTeam.childNodes);
+			// if (primaryTeam.childNodes.length >= 3) {
+			// 	console.log('prevent promote');
+			// 	// event.preventDefault()
+			// 	promoteBtn.disabled = true;
+			// 	promoteBtn.classList.add('disabled')
+			// }
+			// else {
+			// 	promoteBtn.disabled = false;
+			// 	promoteBtn.classList.remove('disabled')
+			// }
 			console.log('promote ' + pokemon.name);
 			promoteInTeamLS(pokemon)
 			promote(card, primaryTeam, pokemon)
@@ -236,7 +256,16 @@ function promote(card, toElement, pokemon) {
 function toggleDisabled() {
 	const allPromoteBtns = document.querySelectorAll('.info__button--promote')
 
-	if (primaryTeam.childNodes.length == 6 && backupTeam.childNodes.length > 3) {
+	console.log(primaryTeam.childNodes);
+	const counts = [];
+	primaryTeam.childNodes.forEach(elem => {
+		if (elem.nodeName == 'DIV') {
+			counts.push(elem)
+		}
+	});
+	console.log(counts)
+
+	if (counts.length >= 3 && backupTeam.childNodes.length > 3) {
 
 		for (let i = 0; i < allPromoteBtns.length; i++) {
 			console.log('disabling buttons');
@@ -244,10 +273,10 @@ function toggleDisabled() {
 			allPromoteBtns[i].classList.add('disabled')
 		}
 	}
-	else if (primaryTeam.childNodes.length < 6 && backupTeam.childNodes.length > 3) {
+	else if (counts.length < 3 && backupTeam.childNodes.length > 3) {
 
 		for (let i = 0; i < allPromoteBtns.length; i++) {
-			console.log('disabling buttons');
+			console.log('enabling buttons');
 			allPromoteBtns[i].disabled = false;
 			allPromoteBtns[i].classList.remove('disabled')
 		}

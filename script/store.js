@@ -38,7 +38,7 @@ function teamChampions() {
 
 // Skapar element och lägger in innehåll i lag-vyn
 
-function ShowTeamName(teamNameHeading, selectOption) {
+function ShowTeam(teamNameHeading, selectOption) {
 	const team = teamChampions()
 
 	if (team.name) {
@@ -195,4 +195,4 @@ function promoteInTeamLS(pokemon) {
 }
 
 
-export { addToTeamLS, storeTeam, kickFromTeamLS, ShowTeamName, teamChampions, demoteInTeamLS, promoteInTeamLS, storeNick }
+export { addToTeamLS, storeTeam, kickFromTeamLS, ShowTeam, teamChampions, demoteInTeamLS, promoteInTeamLS, storeNick }
