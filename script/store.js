@@ -65,9 +65,19 @@ function storeNick(newName, cardHeading, pokemon, container) {
 
 	if (container == primaryTeam) {
 		const pokemonToRename = team.primaryChampions.find(elem => elem.name == pokemon.name)
-		console.log('innan namnbyte: ' + pokemonToRename);
-		pokemonToRename.name = newName
-		console.log('efter namnbyte: ' + pokemonToRename);
+		let pokemonIndex = team.primaryChampions.indexOf(pokemonToRename);
+		console.log('innan namnbyte: ' +
+			pokemonToRename.name);
+		team.primaryChampions[pokemonIndex].name = team.primaryChampions[pokemonIndex].name + ' ' + newName
+		// pokemonToRename.name = pokemonToRename.name + ' ' + newName
+		console.log('efter namnbyte: ' + pokemonToRename.name);
+	} else if (container == primaryTeam) {
+		const pokemonToRename = team.backupChampions.find(elem => elem.name == pokemon.name)
+		let pokemonIndex = team.backupChampions.indexOf(pokemonToRename);
+		console.log('innan namnbyte: ' + pokemonToRename.name);
+		team.backupChampions[pokemonIndex].name = team.backupChampions[pokemonIndex].name + ' ' + newName
+		// pokemonToRename.name = pokemonToRename.name + ' ' + newName
+		console.log('efter namnbyte: ' + pokemonToRename.name);
 	}
 
 	// console.log('inuti storeNick' + pokemon);

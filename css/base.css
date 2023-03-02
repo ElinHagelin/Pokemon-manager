@@ -30,7 +30,7 @@ body {
 .main {
 	background: linear-gradient(to bottom, rgb(255, 154, 154) 5%, white 100%);
 	min-height: 50vh;
-	overflow-y: auto;
+	/* margin-top: -1.5em; */
 }
 
 .search__bar {

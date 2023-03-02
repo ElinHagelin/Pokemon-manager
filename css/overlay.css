@@ -35,6 +35,10 @@
 	max-width: 90%;
 }
 
+.overlay__promote {
+	background-color: rgba(28, 178, 28, 0.7);
+}
+
 @media screen and (min-width: 600px) {
 	.overlay__background {
 		align-items: center;
