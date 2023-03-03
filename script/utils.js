@@ -40,10 +40,12 @@ function teamStartScreen() {
 	if (team.primaryChampions.length > 0) {
 		teamStart.classList.add('invisible')
 		backupHeading.classList.remove('invisible')
+		primaryHeading.classList.remove('invisible')
 	}
 	else if (team.primaryChampions.length == 0 && team.backupChampions.length == 0) {
 		teamStart.classList.remove('invisible')
 		backupHeading.classList.add('invisible')
+		primaryHeading.classList.add('invisible')
 	}
 }
 
