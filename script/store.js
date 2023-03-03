@@ -57,47 +57,29 @@ function storeTeam(teamName) {
 
 // sparar namnen du ger pokemons i ditt lag 
 
-function storeNick(newName, pokemon, container) {
+function storeNick(newName, pokemon, container, heading) {
 	let team = getTeamFromLS()
+	let capitalName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
 
 	if (container == primaryTeam) {
 		const pokemonToRename = team.primaryChampions.find(elem => elem.name == pokemon.name)
 		let pokemonIndex = team.primaryChampions.indexOf(pokemonToRename);
 
-		// team.primaryChampions[pokemonIndex].name = `${team.primaryChampions[pokemonIndex].name} ${newName}`
-		team.primaryChampions[pokemonIndex].nick = `${team.primaryChampions[pokemonIndex].name} '${newName}'`
+		team.primaryChampions[pokemonIndex].nick = `${capitalName} '${newName}'`
+		heading.innerText = team.primaryChampions[pokemonIndex].nick
 
 	} else if (container == backupTeam) {
 		const pokemonToRename = team.backupChampions.find(elem => elem.name == pokemon.name)
 		let pokemonIndex = team.backupChampions.indexOf(pokemonToRename);
 
-		// team.backupChampions[pokemonIndex].name = `${team.backupChampions[pokemonIndex].name} ${newName}`
-		team.backupChampions[pokemonIndex].nick = `${team.backupChampions[pokemonIndex].name} '${newName}'`
+		console.log(pokemonToRename, pokemonIndex);
 
+		team.backupChampions[pokemonIndex].nick = `${capitalName} '${newName}'`
+		heading.innerText = team.backupChampions[pokemonIndex].nick
 	}
 
 	setTeamInLS(team)
 }
-
-// function removeNick(params) {
-// 	let team = getTeamFromLS()
-
-// 	if (container == primaryTeam) {
-// 		const pokemonToRename = team.primaryChampions.find(elem => elem.name == pokemon.name)
-// 		let pokemonIndex = team.primaryChampions.indexOf(pokemonToRename);
-
-// 		team.primaryChampions[pokemonIndex].name = `${team.primaryChampions[pokemonIndex].name} ${newName}`
-
-// 	} else if (container == backupTeam) {
-// 		const pokemonToRename = team.backupChampions.find(elem => elem.name == pokemon.name)
-// 		let pokemonIndex = team.backupChampions.indexOf(pokemonToRename);
-
-// 		team.backupChampions[pokemonIndex].name = `${team.backupChampions[pokemonIndex].name} ${newName}`
-
-// 	}
-
-// 	setTeamInLS(team)
-// }
 
 // Lägger till pokemon till ditt lag
 

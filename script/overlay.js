@@ -1,13 +1,38 @@
 import { storeTeam, storeNick } from "./store.js";
 
 const teamName = document.querySelector('.team__heading__text')
-// const pokemonHeading = document.querySelector('.info__heading')
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
 
+function startOverlay(container) {
+	const background = document.createElement('div')
+	const dialogue = document.createElement('div')
+	const startHeading = document.createElement('h1')
+	const startText = document.createElement('p')
+
+	background.classList.add('overlay__background')
+	dialogue.classList.add('start__overlay__dialogue')
+	startHeading.classList.add('start__overlay__heading')
+	startText.classList.add('start__overlay__text')
+
+	startHeading.innerText = 'Welcome to Pokémon Team Manager'
+	startText.innerText = `Here you can create your own pokemon-team. It's easy, just scroll through the list with pokémon or search for specific pokémon and add them to your team. Click outside this box to get started`
+
+	dialogue.append(startHeading, startText)
+	background.append(dialogue)
+	container.append(background)
+	dialogue.addEventListener('click', event => {
+		event.stopPropagation()
+	})
+
+	background.addEventListener('click', () => {
+		background.remove()
+	})
+}
+
 // Skapar en overlay med en input
 
-function createOverlay(container, headingText, pokemon, teamContainer, pokemonHeading, capitalName) {
+function createInputOverlay(container, headingText, pokemon, teamContainer, pokemonHeading, capitalName) {
 	const overlay = {
 		background: document.createElement('div'),
 		dialogue: document.createElement('div'),
@@ -39,17 +64,11 @@ function createOverlay(container, headingText, pokemon, teamContainer, pokemonHe
 		}
 		else if (event.key == 'Enter' && newName != '' && headingText == 'Name your pokémon') {
 			if (teamContainer == primaryTeam) {
-				storeNick(' ' + newName, pokemon, primaryTeam)
-				let team = getTeamFromLS()
-				console.log(pokemon.name);
-				pokemonHeading.innerText = pokemon.nick
-
+				storeNick(' ' + newName, pokemon, primaryTeam, pokemonHeading)
 			} else {
-				// capitalName = capitalName + ' ' + newName
-				storeNick(capitalName, pokemon, backupTeam)
-				pokemonHeading.innerText = pokemon.nick
-
+				storeNick(' ' + newName, pokemon, backupTeam, pokemonHeading)
 			}
+
 			newName = ''
 			overlay.background.remove()
 		}
@@ -73,4 +92,4 @@ function createOverlay(container, headingText, pokemon, teamContainer, pokemonHe
 	})
 }
 
-export { createOverlay }
+export { createInputOverlay, startOverlay }

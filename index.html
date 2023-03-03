@@ -18,27 +18,40 @@
 	<header class="header">
 		<img src="./img/pngegg.png" alt="Pokémon logo" class="main__logo">
 		<h2 class="main__heading">Team Manager</h2>
+
 		<div class="main__buttons">
 			<button class="button button--search">Find Champion</button>
 			<button class="button button--team selected">My team</button>
 		</div>
+
 	</header>
+
+
 	<main class="main">
 		<div class="main__search invisible">
 			<div class="add__overlay fade-out">
 				<p class="add__overlay__para"></p>
 			</div>
+
 			<section class="search__bar">
 				<label class="search__label" for="search-input">Search for pokémon</label>
 				<input type="text" id="search-input">
 			</section>
+
+
 			<div class="search__error invisible">
 				<h3 class="erroe-message">No match found</h3>
 			</div>
+
 			<section class="main__content main__content--search">
 			</section>
 		</div>
+
+
 		<div class="main__team">
+			<div class="team__overlay fade-out">
+				<p class="team__overlay__para"></p>
+			</div>
 			<div class="team__heading__container">
 				<div class="team__heading">
 					<h3 class="team__heading__text">Add team name
@@ -48,19 +61,18 @@
 			</div>
 
 			<div class="team__startscreen">
-				<h3 class="start__heading">You have no team members yet</h3>
-				<p class="start__para">Name your team, go to find champion and add pokémons to your team</p>
+				<h3 class="team__empty__heading">You have no team members yet</h3>
+				<p class="team__empty__para">Name your team, go to find champion and add pokémons to your team</p>
+				<h3 class="team__incomplete__heading invisible">Your team is incomplete</h3>
+				<p class="team__incomplete__para invisible">You must have 3 primary champions, promote champions from
+					backup or add new pokémons</p>
 			</div>
 
 			<section class="main__content main__content--team invisible">
-				<div class="team__overlay fade-out">
-					<p class="team__overlay__para"></p>
-				</div>
-				<h4 class="primary__heading invisible">Primary team members</h4>
+
+				<h4 class="primary__heading invisible">My team</h4>
 				<div class="team__primary">
-					<!-- <p class="team__order">1</p>
-					<p class="team__order">2</p>
-					<p class="team__order">3</p> -->
+
 				</div>
 
 
@@ -76,6 +88,7 @@
 	<footer class="footer">
 		<p>Powered by <a href="https://pokeapi.co/" target="blank">PokeAPI</a></p>
 	</footer>
+
 </body>
 
 </html>

@@ -149,7 +149,6 @@ main::-webkit-scrollbar-thumb {
 }
 
 @media screen and (min-width: 800px) {
-
 	.main__content {
 		flex-direction: row;
 		flex-wrap: wrap;
