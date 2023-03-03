@@ -108,6 +108,7 @@ async function createCard(container, pokemon) {
 		cardInfo.append(buttonContainer)
 		const editNick = createElement('img', 'edit-nick')
 		editNick.src = ('../img/🦆 icon _pencil_.png')
+		editNick.alt = 'Edit'
 
 		headingContainer.append(editNick)
 
