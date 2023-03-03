@@ -1,7 +1,7 @@
 // Hämtar Listan med pokemon från API
 
 async function getPokemonList() {
-	const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0')
+	const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1050&offset=0')
 	let data = await response.json()
 	return data
 }

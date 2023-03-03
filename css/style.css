@@ -18,20 +18,16 @@
 	flex-direction: column;
 }
 
-.search__startscreen {
+.search__error {
 	background-color: rgba(216, 216, 216, 0.7);
 	padding: 2em 1em;
 	margin: 1em;
 	border-radius: 1em;
 }
 
-.start__heading {
+.error__message {
 	font-size: 1.2em;
 	margin-bottom: 1em;
-}
-
-.start__para {
-	font-size: 1em;
 }
 
 .card {

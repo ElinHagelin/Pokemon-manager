@@ -22,15 +22,6 @@ const pokemonHeading = document.querySelector('.info__heading')
 // const primaryTeamList = []
 // const backupTeamList = []
 
-// Startskärm på söksidan innan man sökt på något
-
-function searchStartScreen() {
-	if (mainContentSearch.childNodes.length == 2) {
-		searchStart.classList.add('invisible')
-	} else if (mainContentSearch.childNodes.length < 2) {
-		searchStart.classList.remove('invisible')
-	}
-}
 
 // Startskärm på lagsidan innan man lagt till någon pokemon
 
@@ -303,4 +294,4 @@ function fadeOverlay(overlay) {
 	}, 2000);
 }
 
-export { createCard, search, clearContent, kick, toggleDisabled, teamStartScreen, searchStartScreen }
+export { createCard, search, clearContent, kick, toggleDisabled, teamStartScreen }

@@ -1,13 +1,11 @@
 import { getPokemonList } from "./fetching.js";
-import { createCard, search, clearContent, kick, toggleDisabled, searchStartScreen, teamStartScreen } from "./utils.js";
+import { createCard, search, clearContent, toggleDisabled, teamStartScreen } from "./utils.js";
 import { createOverlay } from "./overlay.js"
-import { addToTeamLS, ShowTeam, getTeamFromLS } from "./store.js";
+import { ShowTeam } from "./store.js";
 
 
 const html = document.querySelector('html')
 const mainContent = document.querySelector('.main__content')
-const mainContentSearch = document.querySelector('.main__content--search')
-const mainContentTeam = document.querySelector('.main__content--team')
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
 const searchInput = document.querySelector('#search-input')
@@ -17,10 +15,7 @@ const searchView = document.querySelector('.main__search')
 const teamView = document.querySelector('.main__team')
 const editIcon = document.querySelector('.heading__icon')
 const teamName = document.querySelector('.team__heading__text')
-const addToTeamBtn = document.querySelector('.info__button--add')
-const team1 = document.querySelector('#team-1')
-const promoteBtn = document.querySelector('.info__button--promote')
-const editNick = document.querySelector('.edit-nick')
+const searchError = document.querySelector('.search__error')
 
 
 // Hämtar hela listan med pokemon från API
@@ -33,22 +28,32 @@ async function fullPokemonList() {
 
 ShowTeam(teamName)
 teamStartScreen()
-searchStartScreen()
+// searchStartScreen()
 
+clearContent(mainContent)
+const data = await fullPokemonList()
+data.results.forEach(async (pokemon) => {
+	createCard(mainContent, pokemon)
+})
 
 
 // Lyssnar på enter på sök-input
 
 searchInput.addEventListener('keydown', async (event) => {
 	const data = await fullPokemonList()
+	searchError.classList.add('invisible')
 
 	const searchString = searchInput.value.toLowerCase()
 	if (event.key == 'Enter' && searchString != '') {
 		clearContent(mainContent)
 		const searchList = search(searchString, data.results)
-		searchList.forEach(async (pokemon) => {
-			createCard(mainContent, pokemon)
-		})
+		if (searchList.length === 0) {
+			searchError.classList.remove('invisible')
+		} else {
+			searchList.forEach(async (pokemon) => {
+				createCard(mainContent, pokemon)
+			})
+		}
 
 		searchInput.value = ''
 	}
@@ -73,7 +78,7 @@ teamButton.addEventListener('click', () => {
 	searchButton.classList.remove('selected')
 	clearContent(primaryTeam)
 	clearContent(backupTeam)
-	ShowTeam(teamName, team1)
+	ShowTeam(teamName)
 	teamStartScreen()
 	toggleDisabled()
 })

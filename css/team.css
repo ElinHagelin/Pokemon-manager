@@ -150,8 +150,6 @@
 	}
 
 	.team__heading {
-		/* grid-column: 1;
-		grid-row: 1; */
 		justify-self: center;
 		font-size: 1.3em;
 	}

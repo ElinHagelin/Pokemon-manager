@@ -2,12 +2,9 @@ import { createCard } from "./utils.js";
 
 const primaryTeam = document.querySelector('.team__primary')
 const backupTeam = document.querySelector('.team__backup')
-// const promoteBtn = document.querySelector('.info__button--promote')
-
 
 const LS_KEY = 'Pokemon-manager'
-// const primaryChampions = []
-// const backupChampions = []
+
 const emptyTeam = {
 	name: '',
 	primaryChampions: [],
@@ -26,11 +23,12 @@ function getTeamFromLS() {
 	return teamFromLS
 }
 
+// sparar det uppdaterade laget i LS
+
 function setTeamInLS(team) {
 	let teamToSave = JSON.stringify(team)
 	localStorage.setItem(LS_KEY, teamToSave)
 }
-
 
 // Skapar element och lägger in innehåll i lag-vyn
 
@@ -48,7 +46,6 @@ function ShowTeam(teamNameHeading) {
 	})
 }
 
-
 // sparar lagnamnet när man ändrat
 
 function storeTeam(teamName) {
@@ -60,35 +57,47 @@ function storeTeam(teamName) {
 
 // sparar namnen du ger pokemons i ditt lag 
 
-function storeNick(newName, cardHeading, pokemon, container) {
+function storeNick(newName, pokemon, container) {
 	let team = getTeamFromLS()
 
 	if (container == primaryTeam) {
 		const pokemonToRename = team.primaryChampions.find(elem => elem.name == pokemon.name)
 		let pokemonIndex = team.primaryChampions.indexOf(pokemonToRename);
-		console.log('innan namnbyte: ' +
-			pokemonToRename.name);
-		team.primaryChampions[pokemonIndex].name = team.primaryChampions[pokemonIndex].name + ' ' + newName
-		// pokemonToRename.name = pokemonToRename.name + ' ' + newName
-		console.log('efter namnbyte: ' + pokemonToRename.name);
-	} else if (container == primaryTeam) {
+
+		// team.primaryChampions[pokemonIndex].name = `${team.primaryChampions[pokemonIndex].name} ${newName}`
+		team.primaryChampions[pokemonIndex].nick = `${team.primaryChampions[pokemonIndex].name} '${newName}'`
+
+	} else if (container == backupTeam) {
 		const pokemonToRename = team.backupChampions.find(elem => elem.name == pokemon.name)
 		let pokemonIndex = team.backupChampions.indexOf(pokemonToRename);
-		console.log('innan namnbyte: ' + pokemonToRename.name);
-		team.backupChampions[pokemonIndex].name = team.backupChampions[pokemonIndex].name + ' ' + newName
-		// pokemonToRename.name = pokemonToRename.name + ' ' + newName
-		console.log('efter namnbyte: ' + pokemonToRename.name);
+
+		// team.backupChampions[pokemonIndex].name = `${team.backupChampions[pokemonIndex].name} ${newName}`
+		team.backupChampions[pokemonIndex].nick = `${team.backupChampions[pokemonIndex].name} '${newName}'`
+
 	}
-
-	// console.log('inuti storeNick' + pokemon);
-	// pokemon.name = pokemon.name + nick
-	// console.log('Nytt namn: ' + pokemon.name);
-	// cardHeading.innerText = pokemon.name
-
-	// pokemon.nickname = nick
 
 	setTeamInLS(team)
 }
+
+// function removeNick(params) {
+// 	let team = getTeamFromLS()
+
+// 	if (container == primaryTeam) {
+// 		const pokemonToRename = team.primaryChampions.find(elem => elem.name == pokemon.name)
+// 		let pokemonIndex = team.primaryChampions.indexOf(pokemonToRename);
+
+// 		team.primaryChampions[pokemonIndex].name = `${team.primaryChampions[pokemonIndex].name} ${newName}`
+
+// 	} else if (container == backupTeam) {
+// 		const pokemonToRename = team.backupChampions.find(elem => elem.name == pokemon.name)
+// 		let pokemonIndex = team.backupChampions.indexOf(pokemonToRename);
+
+// 		team.backupChampions[pokemonIndex].name = `${team.backupChampions[pokemonIndex].name} ${newName}`
+
+// 	}
+
+// 	setTeamInLS(team)
+// }
 
 // Lägger till pokemon till ditt lag
 
@@ -96,18 +105,15 @@ function addToTeamLS(pokemon) {
 	let team = getTeamFromLS()
 
 	if (team.primaryChampions.length < 3) {
-		console.log('added ' + pokemon.name + ' to primary');
 		team.primaryChampions.push(pokemon)
 
 	}
 	else if (team.primaryChampions.length >= 3) {
-		console.log('added ' + pokemon.name + ' to backup');
 		team.backupChampions.push(pokemon)
 	}
 
 	setTeamInLS(team)
 }
-
 
 // Kickar pokemons från ditt lag
 
@@ -115,21 +121,14 @@ function kickFromTeamLS(pokemon, container) {
 	let team = getTeamFromLS()
 
 	if (container == primaryTeam) {
-		console.log(team.primaryChampions);
-		console.log('kick from primary: ' + pokemon.name);
 		const pokemonToKick = team.primaryChampions.find(elem => elem.name == pokemon.name)
 		let pokemonIndex = team.primaryChampions.indexOf(pokemonToKick);
-		console.log(pokemonIndex);
 
 		team.primaryChampions.splice(pokemonIndex, 1)
-		// console.log(remove);
 
 	} else if (container == backupTeam) {
-		console.log('kick from backup: ' + pokemon.name);
 		const pokemonToKick = team.backupChampions.find(elem => elem.name == pokemon.name)
-		console.log(pokemonToKick);
 		let pokemonIndex = team.backupChampions.indexOf(pokemonToKick);
-		console.log(pokemonIndex);
 
 		team.backupChampions.splice(pokemonIndex, 1)
 	}
@@ -143,13 +142,10 @@ function demoteInTeamLS(pokemon) {
 	let team = getTeamFromLS()
 
 	const pokemonToDemote = team.primaryChampions.find(elem => elem.name == pokemon.name)
-
 	let pokemonIndex = team.primaryChampions.indexOf(pokemonToDemote);
 
 	team.primaryChampions.splice(pokemonIndex, 1)
 	team.backupChampions.push(pokemon)
-
-	console.log('inside demoteInTeamLS')
 
 	setTeamInLS(team)
 }
@@ -161,14 +157,11 @@ function promoteInTeamLS(pokemon) {
 
 	if (team.primaryChampions.length < 3) {
 		const pokemonToPromote = team.backupChampions.find(elem => elem.name == pokemon.name)
-
 		let pokemonIndex = team.primaryChampions.indexOf(pokemonToPromote);
 
 		team.backupChampions.splice(pokemonIndex, 1)
 		team.primaryChampions.push(pokemon)
 	}
-
-	console.log('inside promoteInTeamLS');
 
 	setTeamInLS(team)
 }

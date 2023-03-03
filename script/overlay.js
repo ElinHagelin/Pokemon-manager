@@ -39,20 +39,27 @@ function createOverlay(container, headingText, pokemon, teamContainer, pokemonHe
 		}
 		else if (event.key == 'Enter' && newName != '' && headingText == 'Name your pokémon') {
 			if (teamContainer == primaryTeam) {
-				storeNick(' ' + newName, pokemonHeading, pokemon, primaryTeam)
-				capitalName = capitalName + ' ' + newName
-				pokemonHeading.innerText = capitalName
+				storeNick(' ' + newName, pokemon, primaryTeam)
+				let team = getTeamFromLS()
+				console.log(pokemon.name);
+				pokemonHeading.innerText = pokemon.nick
 
 			} else {
-				capitalName = capitalName + ' ' + newName
-				storeNick(capitalName, pokemonHeading, pokemon, backupTeam)
-				pokemonHeading.innerText = capitalName
+				// capitalName = capitalName + ' ' + newName
+				storeNick(capitalName, pokemon, backupTeam)
+				pokemonHeading.innerText = pokemon.nick
 
 			}
 			newName = ''
 			overlay.background.remove()
 		}
 		else if (event.key == 'Enter' && newName == '') {
+			if (headingText == 'Name your pokémon') {
+				pokemonHeading.innerText = capitalName
+			}
+			else if (headingText == 'Name your team') {
+				teamName.innerText = 'Add team name'
+			}
 			overlay.background.remove()
 		}
 	})
