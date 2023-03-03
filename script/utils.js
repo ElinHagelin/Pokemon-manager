@@ -61,7 +61,6 @@ async function createCard(container, pokemon) {
 	const headingContainer = createElement('div', 'info__heading__container')
 	const heading = createElement('h5', 'info__heading')
 	const buttonContainer = createElement('div', 'info__button__container')
-	const promoteBtn = createElement('button', 'info__button--promote')
 	const typeHeading = createElement('p', 'type-heading')
 	const abilityHeading = createElement('p', 'ability-heading')
 
